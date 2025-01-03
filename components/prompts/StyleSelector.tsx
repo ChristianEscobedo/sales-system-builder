@@ -13,34 +13,36 @@ interface StyleSelectorProps {
 export function StyleSelector({ value, onChange }: StyleSelectorProps) {
   return (
     <RadioGroup
-      value={value}
-      onValueChange={(val) => onChange(val as StylePreset)}
+      value={value.id}
+      onValueChange={(id) => {
+        const selectedPreset = stylePresets.find(preset => preset.id === id);
+        if (selectedPreset) {
+          onChange(selectedPreset);
+        }
+      }}
       className="grid grid-cols-2 gap-4"
     >
-      {(Object.keys(stylePresets) as StylePreset[]).map((preset) => (
-        <div key={preset} className="relative">
+      {stylePresets.map((preset) => (
+        <div key={preset.id}>
           <RadioGroupItem
-            value={preset}
-            id={preset}
+            value={preset.id}
+            id={preset.id}
             className="peer sr-only"
           />
           <Label
-            htmlFor={preset}
-            className="flex flex-col gap-2 rounded-lg border-2 border-white/10 p-4 hover:bg-white/5 peer-data-[state=checked]:border-purple-500 cursor-pointer"
+            htmlFor={preset.id}
+            className="flex flex-col gap-2 rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
           >
-            <span className="font-semibold text-white">
-              {stylePresets[preset].name}
-            </span>
-            <div className="flex gap-2">
-              {Object.entries(stylePresets[preset].colors).map(([key, color]) => (
+            <div className="flex items-center gap-2">
+              {preset.colors.map((color) => (
                 <div
-                  key={key}
-                  className="w-6 h-6 rounded-full"
+                  key={color}
+                  className="h-4 w-4 rounded-full"
                   style={{ backgroundColor: color }}
-                  title={key}
                 />
               ))}
             </div>
+            <div className="font-semibold">{preset.name}</div>
           </Label>
         </div>
       ))}

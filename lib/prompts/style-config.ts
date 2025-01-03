@@ -1,50 +1,41 @@
-import type { PromptStyleConfig } from "@/types/prompt-extended";
+import type { PromptStyleConfig } from "@/types/prompt";
 
 export const defaultStyleConfig: PromptStyleConfig = {
-  targetAudience: "coaches and agency owners",
-  industryNiche: "",
-  styleDescriptor: "ultra-modern",
-  colorTheme: {
+  theme: "dark",
+  colors: {
     primary: "#6366F1",
     secondary: "#8B5CF6",
-    background: "#000000",
-    gradients: [
-      "from-purple-600 to-blue-600",
-      "from-purple-950/5 via-black to-purple-950/5"
-    ]
-  },
-  layout: {
-    sections: [
-      "Headline",
-      "Subheadline",
-      "Video",
-      "What's Inside",
-      "Optin Form"
-    ],
-    features: [
-      "Blur effect for non-logged users",
-      "Interactive timeline",
-      "Floating testimonials",
-      "Social proof bar"
-    ]
-  },
-  content: {
-    problem: "",
-    audience: "coaches and agency owners",
-    uniqueApproach: "",
-    trainingModules: []
-  },
-  pages: {
-    auth: ["Login", "Registration"],
-    content: [
-      "Thank You",
-      "Video Training",
-      "Prompts Library",
-      "Resources"
-    ],
-    community: ["Join Community", "Community Dashboard"]
-  },
-  cta: {
-    primary: "Join the Community"
+    accent: "#4F46E5"
   }
 };
+
+export const stylePresets: Record<string, PromptStyleConfig> = {
+  modern: {
+    theme: "dark",
+    colors: {
+      primary: "#6366F1",
+      secondary: "#8B5CF6",
+      accent: "#4F46E5"
+    }
+  },
+  classic: {
+    theme: "light",
+    colors: {
+      primary: "#2563EB",
+      secondary: "#7C3AED",
+      accent: "#1D4ED8"
+    }
+  },
+  minimal: {
+    theme: "light",
+    colors: {
+      primary: "#000000",
+      secondary: "#4B5563",
+      accent: "#1F2937"
+    }
+  }
+};
+
+export function getStylePreset(name: string): PromptStyleConfig {
+  return stylePresets[name] || defaultStyleConfig;
+}

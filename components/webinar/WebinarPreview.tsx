@@ -2,11 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Download, ExternalLink } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { WebinarData } from "@/types/webinar";
-import { generateSlideContent } from "@/lib/utils/webinar-generator";
 
 interface WebinarPreviewProps {
   data: WebinarData;
@@ -14,91 +11,69 @@ interface WebinarPreviewProps {
 
 export function WebinarPreview({ data }: WebinarPreviewProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const router = useRouter();
-  
+
   const nextSlide = () => {
     if (currentSlide < data.slides.length - 1) {
-      setCurrentSlide(currentSlide + 1);
+      setCurrentSlide(prev => prev + 1);
     }
   };
 
   const prevSlide = () => {
     if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
+      setCurrentSlide(prev => prev - 1);
     }
   };
 
-  const downloadPresentation = () => {
-    // Implementation for downloading presentation
-    console.log("Downloading presentation...");
+  const getSlideStyle = () => {
+    const defaultStyle = {
+      theme: "dark",
+      colors: {
+        primary: "#6366F1",
+        secondary: "#8B5CF6",
+        accent: "#4F46E5"
+      }
+    };
+
+    const style = data.style || defaultStyle;
+    const isDark = style.theme === "dark";
+
+    return {
+      backgroundColor: isDark ? "#000000" : "#FFFFFF",
+      color: isDark ? "#FFFFFF" : "#000000",
+      backgroundImage: isDark 
+        ? "linear-gradient(to bottom right, rgba(147, 51, 234, 0.05), rgba(0, 0, 0, 0), rgba(79, 70, 229, 0.05))"
+        : "linear-gradient(to bottom right, rgba(147, 51, 234, 0.1), rgba(255, 255, 255, 0), rgba(79, 70, 229, 0.1))"
+    };
   };
 
-  const openPreview = () => {
-    const encodedData = encodeURIComponent(JSON.stringify(data));
-    window.open(`/template-webinar-builder/preview?data=${encodedData}`, "_blank");
-  };
-
-  const colors = data.style?.colors || {
-    primary: "#6366F1",
-    secondary: "#8B5CF6",
-    background: "#000000",
-    text: "#FFFFFF",
-    accent: "#4F46E5"
-  };
-
-  const gradients = data.style?.gradients || [
-    "from-purple-600 to-blue-600",
-    "from-purple-950/5 via-black to-purple-950/5"
-  ];
+  const currentSlideContent = data.slides[currentSlide];
 
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-semibold text-white">Slide Preview</h3>
-        <div className="flex gap-2">
-          <Button
-            onClick={openPreview}
-            variant="ghost"
-            className="text-white hover:bg-white/10"
-          >
-            <ExternalLink size={16} className="mr-2" />
-            Preview
-          </Button>
-          <Button
-            onClick={downloadPresentation}
-            variant="ghost"
-            className="text-white hover:bg-white/10"
-          >
-            <Download size={16} className="mr-2" />
-            Download
-          </Button>
-        </div>
-      </div>
+      <h3 className="text-xl font-semibold text-white mb-4">Preview</h3>
 
       <div 
-        className={cn(
-          "aspect-video rounded-lg p-8 mb-4 bg-gradient-to-br",
-          gradients[0],
-          "overflow-hidden"
-        )}
-        style={{ backgroundColor: colors.background }}
+        className="aspect-video rounded-lg overflow-hidden"
+        style={getSlideStyle()}
       >
-        {/* Slide Content */}
-        <div className="h-full flex items-center justify-center overflow-y-auto">
-          <div dangerouslySetInnerHTML={{ 
-            __html: generateSlideContent(data.slides[currentSlide], data) 
-          }} className="w-full" />
-        </div>
+        {currentSlideContent && (
+          <div className="p-8">
+            <h2 className="text-2xl font-bold mb-4">
+              {currentSlideContent.content.title}
+            </h2>
+            {/* Add more slide content rendering based on type */}
+          </div>
+        )}
       </div>
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mt-4">
         <Button
+          variant="ghost"
           onClick={prevSlide}
           disabled={currentSlide === 0}
-          variant="ghost"
           className="text-white hover:bg-white/10"
         >
-          <ChevronLeft size={16} className="mr-2" />
+          <ChevronLeft className="mr-2" />
           Previous
         </Button>
 
@@ -107,13 +82,13 @@ export function WebinarPreview({ data }: WebinarPreviewProps) {
         </span>
 
         <Button
+          variant="ghost"
           onClick={nextSlide}
           disabled={currentSlide === data.slides.length - 1}
-          variant="ghost"
           className="text-white hover:bg-white/10"
         >
           Next
-          <ChevronRight size={16} className="ml-2" />
+          <ChevronRight className="ml-2" />
         </Button>
       </div>
     </div>

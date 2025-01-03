@@ -1,24 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Layout, FileText, Video, CheckSquare, MessageSquare, HelpCircle, Plus, Trash2 } from "lucide-react";
 import { TemplateGallery } from "./TemplateGallery";
 import type { PageSection } from "@/types/page-builder";
+import type { LucideIcon } from 'lucide-react';
 
-const sectionTypes = [
+type PageSectionType = 
+  | "hero" 
+  | "key-points" 
+  | "video" 
+  | "features" 
+  | "community" 
+  | "cta";
+
+interface SectionTypeConfig {
+  type: PageSectionType;
+  label: string;
+  icon: LucideIcon;
+}
+
+const sectionTypes: SectionTypeConfig[] = [
   { type: "hero", label: "Hero Section", icon: Layout },
   { type: "key-points", label: "Key Points", icon: FileText },
   { type: "features", label: "Features", icon: CheckSquare },
   { type: "video", label: "Video", icon: Video },
   { type: "community", label: "Community", icon: MessageSquare },
   { type: "cta", label: "Call to Action", icon: HelpCircle }
-] as const;
+];
 
 function SectionPreview({ section }: { section: PageSection }) {
   const getIcon = () => {
-    switch (section.type) {
+    switch (section.type as PageSectionType) {
       case "hero":
         return <Layout className="text-blue-400" />;
       case "key-points":
@@ -27,9 +42,9 @@ function SectionPreview({ section }: { section: PageSection }) {
         return <Video className="text-blue-400" />;
       case "features":
         return <CheckSquare className="text-blue-400" />;
-      case "notes":
+      case "community":
         return <MessageSquare className="text-blue-400" />;
-      case "quiz":
+      case "cta":
         return <HelpCircle className="text-blue-400" />;
       default:
         return <FileText className="text-blue-400" />;
@@ -118,7 +133,7 @@ export function PageSectionBuilder({ sections, onChange, trigger }: PageSectionB
                     }}
                     className="h-auto py-4 px-4 flex flex-col items-center gap-2 text-white hover:text-blue-400 hover:border-blue-500/50"
                   >
-                    <type.icon className="h-6 w-6" />
+                    {React.createElement(type.icon, { className: "h-6 w-6" })}
                     <span className="text-sm font-medium">{type.label}</span>
                   </Button>
                 ))}

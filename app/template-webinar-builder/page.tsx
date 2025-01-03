@@ -5,44 +5,23 @@ import { WebinarHeader } from "@/components/webinar/WebinarHeader";
 import { WebinarForm } from "@/components/webinar/WebinarForm";
 import { WebinarPreview } from "@/components/webinar/WebinarPreview";
 import type { WebinarData } from "@/types/webinar";
-import { defaultSlides } from "@/lib/constants/slide-templates";
 
 export default function WebinarBuilderPage() {
   const [webinarData, setWebinarData] = useState<WebinarData>({
     title: "",
     subtitle: "",
-    type: "webinar",
+    description: "",
+    duration: "60 minutes",
+    targetAudience: "",
+    mainBenefit: "",
+    slides: [],
     style: {
-      preset: "modern",
+      theme: "dark",
       colors: {
         primary: "#6366F1",
         secondary: "#8B5CF6",
-        background: "#000000",
-        text: "#FFFFFF",
         accent: "#4F46E5"
-      },
-      gradients: [
-        "from-purple-600 to-blue-600",
-        "from-purple-950/5 via-black to-purple-950/5"
-      ]
-    },
-    presenter: {
-      name: "",
-      title: "",
-      credentials: "",
-      bio: ""
-    },
-    problem: "",
-    solution: "",
-    targetAudience: "",
-    mainBenefit: "",
-    slides: defaultSlides.map(type => ({ type, content: {} })),
-    offer: {
-      name: "",
-      price: "",
-      value: "",
-      guarantee: "",
-      bonuses: []
+      }
     }
   });
 

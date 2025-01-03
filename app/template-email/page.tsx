@@ -16,16 +16,19 @@ export default function EmailSequencePage() {
     solution: "",
     bonusName: "",
     bonusValue: 97,
-    emails: [
-      { day: 1, subject: "", body: "" },
-      { day: 2, subject: "", body: "" },
-      { day: 3, subject: "", body: "" },
-      { day: 4, subject: "", body: "" },
-      { day: 5, subject: "", body: "" },
-      { day: 6, subject: "", body: "" },
-      { day: 7, subject: "", body: "" }
-    ]
+    emails: Array.from({ length: 7 }, (_, i) => ({
+      day: i + 1,
+      subject: "",
+      body: "",
+      type: "invitation"
+    }))
   });
+
+  const previewData = {
+    productName: emailData.productName,
+    mainBenefit: emailData.mainBenefit,
+    targetAudience: emailData.targetAudience,
+  };
 
   return (
     <main className="min-h-screen relative overflow-hidden bg-[#050505]">
@@ -36,7 +39,10 @@ export default function EmailSequencePage() {
         
         <div className="grid lg:grid-cols-2 gap-8 mt-8">
           <EmailForm data={emailData} onChange={setEmailData} />
-          <EmailPreview data={emailData} />
+          <EmailPreview 
+            emails={emailData.emails} 
+            previewData={previewData}
+          />
         </div>
       </div>
     </main>

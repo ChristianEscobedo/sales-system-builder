@@ -18,10 +18,12 @@ export default function HighTicketAscensionPage() {
     webinarTime: "",
     webinarTitle: "",
     bonusName: "",
-    bonusValue: "",
-    earlyBirdDiscount: "",
+    bonusValue: 0,
     hiddenBonusName: "",
-    hiddenBonusValue: "",
+    hiddenBonusValue: 0,
+    highTicketOffer: "",
+    highTicketPrice: "",
+    callToAction: "webinar",
     emails: []
   });
 

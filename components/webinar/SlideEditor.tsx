@@ -11,7 +11,7 @@ import type { WebinarSlide } from "@/types/webinar";
 
 interface SlideEditorProps {
   slide: WebinarSlide;
-  onChange: (content: any) => void;
+  onChange: (slide: WebinarSlide) => void;
 }
 
 export function SlideEditor({ slide, onChange }: SlideEditorProps) {
@@ -22,7 +22,13 @@ export function SlideEditor({ slide, onChange }: SlideEditorProps) {
   }
 
   const updateField = (field: string, value: any) => {
-    onChange({ ...slide.content, [field]: value });
+    onChange({
+      ...slide,
+      content: {
+        ...slide.content,
+        [field]: value
+      }
+    });
   };
 
   const addListItem = (field: string) => {
@@ -37,7 +43,7 @@ export function SlideEditor({ slide, onChange }: SlideEditorProps) {
   };
 
   const removeListItem = (field: string, index: number) => {
-    const newList = (slide.content[field] || []).filter((_, i) => i !== index);
+    const newList = (slide.content[field] || []).filter((_: unknown, i: number) => i !== index);
     updateField(field, newList);
   };
 

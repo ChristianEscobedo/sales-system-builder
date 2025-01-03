@@ -1,11 +1,66 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import type { AscensionEmailData } from "@/types/email";
 
 interface EmailFormProps {
   data: AscensionEmailData;
   onChange: Dispatch<SetStateAction<AscensionEmailData>>;
+}
+
+interface TabProps {
+  data: AscensionEmailData;
+  onChange: Dispatch<SetStateAction<AscensionEmailData>>;
+}
+
+function BasicInfoTab({ data, onChange }: TabProps) {
+  return (
+    <div className="space-y-4">
+      <div>
+        <Label className="text-white">Product Price</Label>
+        <Input
+          value={data.productPrice}
+          onChange={(e) => onChange(prev => ({ ...prev, productPrice: e.target.value }))}
+          className="bg-white/10 border-blue-500/30 text-white"
+        />
+      </div>
+      <div>
+        <Label className="text-white">Pain Point</Label>
+        <Input
+          value={data.painPoint}
+          onChange={(e) => onChange(prev => ({ ...prev, painPoint: e.target.value }))}
+          className="bg-white/10 border-blue-500/30 text-white"
+        />
+      </div>
+      {/* Add other basic info fields */}
+    </div>
+  );
+}
+
+function EmailsTab({ data, onChange }: TabProps) {
+  return (
+    <div className="space-y-4">
+      {data.emails.map((email, index) => (
+        <div key={index} className="bg-white/5 p-4 rounded-lg">
+          <Label className="text-white">Email {index + 1}</Label>
+          <Input
+            value={email.subject}
+            onChange={(e) => {
+              const newEmails = [...data.emails];
+              newEmails[index] = { ...email, subject: e.target.value };
+              onChange(prev => ({ ...prev, emails: newEmails }));
+            }}
+            className="bg-white/10 border-blue-500/30 text-white mt-2"
+            placeholder="Subject"
+          />
+          {/* Add other email fields */}
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export function EmailForm({ data, onChange }: EmailFormProps) {

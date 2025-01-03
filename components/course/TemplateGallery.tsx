@@ -2,49 +2,81 @@
 
 import { Button } from "@/components/ui/button";
 import { Layout, FileText, Video, CheckSquare, MessageSquare, HelpCircle } from "lucide-react";
-import type { PageSection } from "@/types/course";
+import type { PageSection, SectionType } from "@/types/course";
 
 interface TemplateGalleryProps {
   onSelect: (sections: PageSection[]) => void;
 }
 
 const templates = {
+  "landing-page": {
+    name: "Landing Page",
+    description: "Basic landing page template",
+    sections: [
+      {
+        type: "title" as SectionType,
+        content: { title: "Welcome" },
+        order: 0
+      },
+      {
+        type: "video" as SectionType,
+        content: { title: "Introduction Video" },
+        order: 1
+      }
+    ] as PageSection[]
+  },
+  "course-module": {
+    name: "Course Module",
+    description: "Standard course module template",
+    sections: [
+      {
+        type: "video" as SectionType,
+        content: { title: "Module Video" },
+        order: 0
+      },
+      {
+        type: "checklist" as SectionType,
+        content: { title: "Action Items" },
+        order: 1
+      }
+    ] as PageSection[]
+  },
   lecture: {
     name: "Video Lecture",
     description: "Standard video lecture template with notes and resources",
     sections: [
-      { type: "title", content: { title: "Lecture Overview" }, order: 0 },
-      { type: "video", content: { title: "Main Lecture" }, order: 1 },
-      { type: "notes", content: { title: "Lecture Notes" }, order: 2 },
-      { type: "resources", content: { title: "Additional Resources" }, order: 3 }
-    ]
+      { type: "title" as SectionType, content: { title: "Lecture Overview" }, order: 0 },
+      { type: "video" as SectionType, content: { title: "Main Lecture" }, order: 1 },
+      { type: "notes" as SectionType, content: { title: "Lecture Notes" }, order: 2 },
+      { type: "resources" as SectionType, content: { title: "Additional Resources" }, order: 3 }
+    ] as PageSection[]
   },
   workshop: {
     name: "Interactive Workshop",
     description: "Hands-on workshop with exercises and implementation steps",
     sections: [
-      { type: "title", content: { title: "Workshop Overview" }, order: 0 },
-      { type: "video", content: { title: "Workshop Introduction" }, order: 1 },
-      { type: "checklist", content: { title: "Implementation Steps" }, order: 2 },
-      { type: "action", content: { title: "Practice Exercise" }, order: 3 },
-      { type: "quiz", content: { title: "Knowledge Check" }, order: 4 }
-    ]
+      { type: "title" as SectionType, content: { title: "Workshop Overview" }, order: 0 },
+      { type: "video" as SectionType, content: { title: "Workshop Introduction" }, order: 1 },
+      { type: "checklist" as SectionType, content: { title: "Implementation Steps" }, order: 2 },
+      { type: "action" as SectionType, content: { title: "Practice Exercise" }, order: 3 },
+      { type: "quiz" as SectionType, content: { title: "Knowledge Check" }, order: 4 }
+    ] as PageSection[]
   },
   summary: {
     name: "Module Summary",
     description: "End-of-module review with key takeaways and next steps",
     sections: [
-      { type: "title", content: { title: "Module Summary" }, order: 0 },
-      { type: "summary", content: { title: "Key Takeaways" }, order: 1 },
-      { type: "checklist", content: { title: "Action Items" }, order: 2 },
-      { type: "resources", content: { title: "Resources & Tools" }, order: 3 }
-    ]
+      { type: "title" as SectionType, content: { title: "Module Summary" }, order: 0 },
+      { type: "summary" as SectionType, content: { title: "Key Takeaways" }, order: 1 },
+      { type: "checklist" as SectionType, content: { title: "Action Items" }, order: 2 },
+      { type: "resources" as SectionType, content: { title: "Resources & Tools" }, order: 3 }
+    ] as PageSection[]
   }
 };
 
 export function TemplateGallery({ onSelect }: TemplateGalleryProps) {
   return (
-    <div className="grid md:grid-cols-2 gap-8">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Object.entries(templates).map(([key, template]) => (
         <div
           key={key}

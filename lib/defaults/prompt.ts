@@ -1,27 +1,35 @@
-import type { PromptData } from "@/types/prompt";
+import type { PromptData, PromptParams } from "@/types/prompt";
 
-interface PromptParams {
-  courseName: string;
-  problem: string;
-  audience: string;
-}
+export const defaultPromptData: PromptData = {
+  resourceType: "Course",
+  resourceName: "",
+  painPoint: "",
+  quickWin: "",
+  frustrationMethod: "",
+  timeFrame: "",
+  modules: [],
+  bonusName: "",
+  bonusValue: 0,
+  targetAudience: "",
+  industryNiche: "",
+  productPrice: "",
+  supportEmail: ""
+};
 
 export function createDefaultPromptData(params: PromptParams): PromptData {
   return {
     resourceType: "Course",
     resourceName: params.courseName,
     painPoint: params.problem,
-    quickWin: `Solve ${params.problem}`,
-    frustrationMethod: "Traditional Methods",
-    timeFrame: "60 minutes",
-    modules: [
-      "Understanding the Basics",
-      "Core Strategies",
-      "Implementation Guide",
-      "Advanced Techniques",
-      "Results & Case Studies"
-    ],
-    bonusName: "Quick Start Guide",
-    bonusValue: 97
+    quickWin: params.solution,
+    frustrationMethod: params.currentMethod,
+    timeFrame: "30 days",
+    modules: params.modules || [],
+    bonusName: "VIP Support",
+    bonusValue: 997,
+    targetAudience: params.audience || "professionals",
+    industryNiche: params.niche || "business",
+    productPrice: "$997",
+    supportEmail: "support@example.com"
   };
 }

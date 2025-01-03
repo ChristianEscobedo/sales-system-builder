@@ -1,21 +1,18 @@
-export type SectionType = 
-  | "hero"
-  | "key-points"
-  | "features"
-  | "testimonials"
-  | "pricing"
-  | "community"
-  | "cta"
-  | "faq"
-  | "comparison"
-  | "stats"
-  | "timeline"
-  | "team"
-  | "contact";
+export type PageSectionType = 
+  | "hero" 
+  | "key-points" 
+  | "video" 
+  | "features" 
+  | "community" 
+  | "cta";
 
 export interface PageSection {
-  type: SectionType;
-  content: any;
+  type: PageSectionType;
+  content: {
+    title?: string;
+    description?: string;
+    [key: string]: any;
+  };
 }
 
 export interface PageStyle {

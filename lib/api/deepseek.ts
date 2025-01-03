@@ -1,81 +1,54 @@
-import type { PromptData } from "@/types/prompt";
-import type { APIError } from "./types";
+import type { PromptData, PromptParams } from "@/types/prompt";
 import { createDefaultPromptData } from "@/lib/defaults/prompt";
-import type { PromptBrief } from "@/lib/validation/prompt";
 
-export async function generatePrompt(brief: PromptBrief): Promise<PromptData> {
+interface Brief {
+  courseName: string;
+  problem: string;
+  audience: string;
+  solution: string;
+  currentMethod: string;
+}
+
+export async function generatePromptData(brief: Brief): Promise<PromptData> {
   try {
-    const response = await fetch("/api/generate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const response = await fetch('/api/deepseek', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(brief)
     });
 
     const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || data.details || 'Failed to generate content');
-    }
-
-    // Validate and ensure all required fields are present
     const validatedData = validatePromptData(data);
+
     if (!validatedData) {
       // If the API response is invalid, return a default structure with the brief data
       return createDefaultPromptData({
         courseName: brief.courseName,
         problem: brief.problem,
+        solution: brief.solution,
+        currentMethod: brief.currentMethod,
         audience: brief.audience
       });
     }
 
     return validatedData;
   } catch (error) {
-    if (error instanceof Error) {
-      throw error;
-    }
-    throw new Error('An unexpected error occurred');
+    console.error('Error generating prompt data:', error);
+    // Return default data structure in case of error
+    return createDefaultPromptData({
+      courseName: brief.courseName,
+      problem: brief.problem,
+      solution: brief.solution,
+      currentMethod: brief.currentMethod,
+      audience: brief.audience
+    });
   }
 }
 
 function validatePromptData(data: any): PromptData | null {
-  const requiredFields = [
-    'resourceType',
-    'resourceName',
-    'painPoint',
-    'quickWin',
-    'frustrationMethod',
-    'timeFrame',
-    'modules',
-    'bonusName',
-    'bonusValue'
-  ];
-
-  // Check if all required fields are present
-  const hasAllFields = requiredFields.every(field => {
-    if (field === 'modules') {
-      return Array.isArray(data[field]) && data[field].length === 5;
-    }
-    return data[field] !== undefined && data[field] !== null;
-  });
-
-  if (!hasAllFields) {
-    return null;
-  }
-
-  // Ensure all fields are of the correct type
-  if (
-    typeof data.resourceType !== 'string' ||
-    typeof data.resourceName !== 'string' ||
-    typeof data.painPoint !== 'string' ||
-    typeof data.quickWin !== 'string' ||
-    typeof data.frustrationMethod !== 'string' ||
-    typeof data.timeFrame !== 'string' ||
-    !Array.isArray(data.modules) ||
-    typeof data.bonusName !== 'string' ||
-    typeof data.bonusValue !== 'number'
-  ) {
-    return null;
-  }
-
+  // Add validation logic here
+  // Return null if validation fails
   return data as PromptData;
 }

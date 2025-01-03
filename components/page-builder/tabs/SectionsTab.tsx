@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Plus, GripVertical, Settings, Trash2 } from "lucide-react";
-import type { PageData, SectionType } from "@/types/page-builder";
+import type { PageData, PageSectionType } from "@/types/page-builder";
 import { PageSectionBuilder } from "../PageSectionBuilder";
 
 interface SectionsTabProps {
@@ -10,27 +10,28 @@ interface SectionsTabProps {
   onChange: (data: PageData) => void;
 }
 
-const sectionTypes: { type: SectionType; label: string }[] = [
+const sectionTypes: { type: PageSectionType; label: string }[] = [
   { type: "hero", label: "Hero Section" },
   { type: "key-points", label: "Key Points" },
+  { type: "video", label: "Video" },
   { type: "features", label: "Features" },
-  { type: "testimonials", label: "Testimonials" },
-  { type: "pricing", label: "Pricing" },
   { type: "community", label: "Community" },
-  { type: "cta", label: "Call to Action" },
-  { type: "faq", label: "FAQ" }
+  { type: "cta", label: "Call to Action" }
 ];
 
 export function SectionsTab({ data, onChange }: SectionsTabProps) {
-  const addSection = (type: SectionType) => {
-    const newSection = {
-      type,
-      content: getDefaultContent(type)
-    };
-    onChange({
-      ...data,
-      sections: [...data.sections, newSection]
-    });
+  const addSection = (type: PageSectionType) => {
+    const newSections = [
+      ...data.sections,
+      {
+        type,
+        content: {
+          title: `New ${type} Section`,
+          description: ""
+        }
+      }
+    ];
+    onChange({ ...data, sections: newSections });
   };
 
   const removeSection = (index: number) => {
@@ -85,12 +86,18 @@ export function SectionsTab({ data, onChange }: SectionsTabProps) {
   );
 }
 
-function getDefaultContent(type: SectionType) {
+function getDefaultContent(type: PageSectionType) {
   switch (type) {
     case "key-points":
       return {
         title: "Key Points",
         points: ["Point 1", "Point 2", "Point 3"]
+      };
+    case "video":
+      return {
+        title: "Video Section",
+        videoUrl: "",
+        description: ""
       };
     case "community":
       return {
@@ -100,6 +107,9 @@ function getDefaultContent(type: SectionType) {
         features: []
       };
     default:
-      return {};
+      return {
+        title: `New ${type} Section`,
+        description: ""
+      };
   }
 }

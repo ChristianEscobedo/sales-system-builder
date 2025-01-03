@@ -29,16 +29,9 @@ export function AutoGenerateWebinarDialog({ onGenerate }: AutoGenerateWebinarDia
     // Generate a simple template
     const generatedData: WebinarData = {
       title: brief.title,
-      type: "webinar",
-      subtitle: `How to ${brief.mainBenefit} for ${brief.targetAudience}`,
-      presenter: {
-        name: brief.presenterName,
-        title: "Expert & Industry Leader",
-        credentials: "",
-        bio: ""
-      },
-      problem: "",
-      solution: "",
+      subtitle: "",
+      description: "",
+      duration: "60 minutes",
       targetAudience: brief.targetAudience,
       mainBenefit: brief.mainBenefit,
       slides: [
@@ -48,16 +41,8 @@ export function AutoGenerateWebinarDialog({ onGenerate }: AutoGenerateWebinarDia
         { type: "benefits", content: { points: [] } },
         { type: "case-studies", content: { studies: [] } },
         { type: "offer", content: {} },
-        { type: "bonuses", content: { items: [] } },
-        { type: "close", content: {} }
-      ],
-      offer: {
-        name: "",
-        price: "",
-        value: "",
-        guarantee: "",
-        bonuses: []
-      }
+        { type: "closing", content: {} }
+      ]
     };
 
     onGenerate(generatedData);

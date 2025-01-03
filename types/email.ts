@@ -1,3 +1,11 @@
+export interface AscensionEmail {
+  day: number;
+  subject: string;
+  content: string;
+  body: string;
+  type: 'invitation' | 'reminder' | 'lastChance';
+}
+
 export interface AscensionEmailData {
   productName: string;
   productPrice: string;
@@ -9,14 +17,11 @@ export interface AscensionEmailData {
   webinarTime: string;
   webinarTitle: string;
   bonusName: string;
-  bonusValue: string;
-  earlyBirdDiscount: string;
+  bonusValue: number;
   hiddenBonusName: string;
-  hiddenBonusValue: string;
-  emails: {
-    subject: string;
-    content: string;
-    type: 'invitation' | 'reminder' | 'lastChance';
-    scheduledFor?: string;
-  }[];
+  hiddenBonusValue: number;
+  highTicketOffer: string;
+  highTicketPrice: string;
+  callToAction: "webinar" | "workshop" | "masterclass" | "call";
+  emails: AscensionEmail[];
 } 

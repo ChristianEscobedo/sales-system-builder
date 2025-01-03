@@ -1,99 +1,79 @@
 "use client";
 
-import { useState } from "react";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dispatch, SetStateAction } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, Wand2 } from "lucide-react";
-import type { AscensionEmailData } from "@/types/email-ascension";
-import { ascensionEmailTemplates } from "@/lib/templates/ascension-email-templates";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Wand2 } from "lucide-react";
+import type { AscensionEmailData } from "@/types/email";
+
+const ascensionEmailTemplates = {
+  day1: {
+    subjects: ["Welcome to the Masterclass!"],
+    body: "Welcome email content..."
+  },
+  day2: {
+    subjects: ["Don't Miss Out!"],
+    body: "Reminder email content..."
+  }
+  // ... other templates
+};
 
 interface EmailsTabProps {
   data: AscensionEmailData;
-  onChange: (data: AscensionEmailData) => void;
+  onChange: Dispatch<SetStateAction<AscensionEmailData>>;
 }
 
 export function EmailsTab({ data, onChange }: EmailsTabProps) {
-  const [expandedDay, setExpandedDay] = useState<number | null>(1);
-
-  const updateEmail = (day: number, field: 'subject' | 'body', value: string) => {
-    const newEmails = data.emails.map(email => 
-      email.day === day ? { ...email, [field]: value } : email
-    );
-    onChange({ ...data, emails: newEmails });
+  const updateEmail = (day: number, field: keyof AscensionEmailData['emails'][0], value: string) => {
+    onChange(prev => ({
+      ...prev,
+      emails: prev.emails.map(email => 
+        email.day === day ? { ...email, [field]: value } : email
+      )
+    }));
   };
 
-  const applyTemplate = (day: number) => {
+  const generateEmailContent = (day: number) => {
     const template = ascensionEmailTemplates[`day${day}` as keyof typeof ascensionEmailTemplates];
     if (template) {
-      updateEmail(day, 'subject', template.subject);
+      // Use the first subject from the subjects array
+      updateEmail(day, 'subject', template.subjects[0]);
       updateEmail(day, 'body', template.body);
+      updateEmail(day, 'content', template.body); // Also update content field
     }
   };
 
   return (
     <div className="space-y-6">
       {data.emails.map((email) => (
-        <div key={email.day} className="bg-white/5 rounded-lg p-4">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
-              <h4 className="text-white font-medium">Day {email.day}</h4>
-              {ascensionEmailTemplates[`day${email.day}` as keyof typeof ascensionEmailTemplates] && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => applyTemplate(email.day)}
-                  className="text-purple-400 hover:text-purple-300"
-                >
-                  <Wand2 size={16} className="mr-2" />
-                  Apply Template
-                </Button>
-              )}
-            </div>
+        <div key={email.day} className="bg-white/5 p-6 rounded-lg space-y-4">
+          <div className="flex justify-between items-center">
+            <h3 className="text-lg font-medium text-white">Day {email.day}</h3>
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setExpandedDay(expandedDay === email.day ? null : email.day)}
-              className="text-gray-400 hover:text-white"
+              onClick={() => generateEmailContent(email.day)}
+              className="text-blue-400 hover:text-blue-300"
             >
-              {expandedDay === email.day ? <ChevronUp /> : <ChevronDown />}
+              <Wand2 size={16} className="mr-2" />
+              Generate
             </Button>
           </div>
 
-          {expandedDay === email.day && (
-            <div className="space-y-4">
-              <div>
-                <Label className="text-white">Choose Subject Line</Label>
-                {ascensionEmailTemplates[`day${email.day}` as keyof typeof ascensionEmailTemplates] && (
-                <Select
-                  value={email.subject}
-                  onValueChange={(value) => updateEmail(email.day, 'subject', value)}
-                >
-                  <SelectTrigger className="bg-white/10 border-purple-500/30 text-white">
-                    <SelectValue placeholder="Select a subject line..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {ascensionEmailTemplates[`day${email.day}` as keyof typeof ascensionEmailTemplates]?.subjects?.map((subject, i) => (
-                      <SelectItem key={i} value={subject}>
-                        {subject}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                )}
-              </div>
-              <div>
-                <Label className="text-white">Email Body</Label>
-                <Textarea
-                  value={email.body}
-                  onChange={(e) => updateEmail(email.day, 'body', e.target.value)}
-                  placeholder="Enter email content..."
-                  className="bg-white/10 border-purple-500/30 text-white min-h-[200px]"
-                />
-              </div>
-            </div>
-          )}
+          <Input
+            value={email.subject}
+            onChange={(e) => updateEmail(email.day, 'subject', e.target.value)}
+            placeholder="Email Subject"
+            className="bg-white/10 border-blue-500/30 text-white"
+          />
+
+          <Textarea
+            value={email.content}
+            onChange={(e) => updateEmail(email.day, 'content', e.target.value)}
+            placeholder="Email Content"
+            className="bg-white/10 border-blue-500/30 text-white min-h-[200px]"
+          />
         </div>
       ))}
     </div>

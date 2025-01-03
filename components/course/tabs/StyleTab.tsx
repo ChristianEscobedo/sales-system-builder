@@ -15,7 +15,23 @@ interface StyleTabProps {
 interface StylePreset {
   name: string;
   theme: "light" | "dark";
-  colors: CourseStyle["colors"];
+  colors: {
+    primary: string;
+    secondary: string;
+    accent: string;
+    background: string;
+    text: string;
+    hover: {
+      text: string;
+      icon: string;
+      background: string;
+    };
+    gradients?: {
+      enabled: boolean;
+      primary: string;
+      secondary: string;
+    };
+  };
 }
 
 const stylePresets: StylePreset[] = [
@@ -92,6 +108,21 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
     }
   };
 
+  const updateGradientColors = (value: string, type: 'primary' | 'secondary') => {
+    const newColors = {
+      ...data.style.colors,
+      gradients: {
+        enabled: data.style.colors.gradients?.enabled ?? false,
+        primary: type === 'primary' ? value : (data.style.colors.gradients?.primary || data.style.colors.primary),
+        secondary: type === 'secondary' ? value : (data.style.colors.gradients?.secondary || data.style.colors.secondary)
+      }
+    };
+    onChange({
+      ...data,
+      style: { ...data.style, colors: newColors }
+    });
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -117,12 +148,12 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
                 </span>
                 <div className="flex gap-2">
                   {Object.entries(preset.colors)
-                    .filter(([key]) => !key.includes('gradients'))
+                    .filter(([key]) => !key.includes('gradients') && !key.includes('hover'))
                     .map(([key, color]) => (
                       <div
                         key={key}
                         className="w-6 h-6 rounded-full"
-                        style={{ backgroundColor: color }}
+                        style={{ backgroundColor: typeof color === 'string' ? color : undefined }}
                         title={key}
                       />
                     ))}
@@ -211,36 +242,12 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
             <ColorPicker
               label="Gradient Start Color"
               value={data.style.colors.gradients?.primary || data.style.colors.primary}
-              onChange={(value) => {
-                const newColors = {
-                  ...data.style.colors,
-                  gradients: {
-                    ...data.style.colors.gradients,
-                    primary: value
-                  }
-                };
-                onChange({
-                  ...data,
-                  style: { ...data.style, colors: newColors }
-                });
-              }}
+              onChange={(value) => updateGradientColors(value, 'primary')}
             />
             <ColorPicker
               label="Gradient End Color"
               value={data.style.colors.gradients?.secondary || data.style.colors.secondary}
-              onChange={(value) => {
-                const newColors = {
-                  ...data.style.colors,
-                  gradients: {
-                    ...data.style.colors.gradients,
-                    secondary: value
-                  }
-                };
-                onChange({
-                  ...data,
-                  style: { ...data.style, colors: newColors }
-                });
-              }}
+              onChange={(value) => updateGradientColors(value, 'secondary')}
             />
           </>
         )}

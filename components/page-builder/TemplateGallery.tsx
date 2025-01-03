@@ -1,53 +1,73 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Layout, FileText, Video, CheckSquare } from "lucide-react";
-import type { PageSection } from "@/types/page-builder";
+import { Layout, FileText, Video, CheckSquare, MessageSquare, HelpCircle } from "lucide-react";
+import type { PageSection, PageSectionType } from "@/types/page-builder";
 
 interface TemplateGalleryProps {
   onSelect: (sections: PageSection[]) => void;
 }
 
 const templates = {
-  basic: {
-    name: "Basic Page",
-    description: "Start with a clean, simple layout that includes all essential sections",
-    preview: "basic-template.png",
+  landing: {
+    name: "Landing Page",
+    description: "Basic landing page template",
     sections: [
-      { type: "hero", content: { title: "Welcome to Our Service" } },
-      { type: "key-points", content: { title: "Key Benefits" } },
-      { type: "features", content: { title: "Features" } },
-      { type: "cta", content: { title: "Get Started" } }
+      {
+        type: "hero" as PageSectionType,
+        content: { 
+          title: "Welcome",
+          description: "Your hero section description" 
+        }
+      },
+      {
+        type: "features" as PageSectionType,
+        content: { 
+          title: "Features",
+          description: "Your features section" 
+        }
+      },
+      {
+        type: "cta" as PageSectionType,
+        content: { 
+          title: "Get Started",
+          description: "Call to action section" 
+        }
+      }
     ]
   },
-  professional: {
-    name: "Professional Landing",
-    description: "High-converting sales page template with proven conversion elements",
-    preview: "pro-template.png",
+  content: {
+    name: "Content Page",
+    description: "Content-focused page template",
     sections: [
-      { type: "hero", content: { title: "Transform Your Business" } },
-      { type: "key-points", content: { title: "Why Choose Us" } },
-      { type: "testimonials", content: { title: "Success Stories" } },
-      { type: "pricing", content: { title: "Pricing Plans" } },
-      { type: "faq", content: { title: "Common Questions" } }
-    ]
-  },
-  community: {
-    name: "Community Hub",
-    description: "Engage your audience with this community-focused template",
-    preview: "community-template.png",
-    sections: [
-      { type: "hero", content: { title: "Join Our Community" } },
-      { type: "features", content: { title: "Member Benefits" } },
-      { type: "community", content: { title: "Community Features" } },
-      { type: "testimonials", content: { title: "Member Stories" } }
+      {
+        type: "key-points" as PageSectionType,
+        content: { 
+          title: "Key Points",
+          description: "Main points section" 
+        }
+      },
+      {
+        type: "video" as PageSectionType,
+        content: { 
+          title: "Video Content",
+          description: "Video section" 
+        }
+      },
+      {
+        type: "community" as PageSectionType,
+        content: { 
+          title: "Join Community",
+          description: "Community section" 
+        }
+      }
     ]
   }
 };
 
 export function TemplateGallery({ onSelect }: TemplateGalleryProps) {
   return (
-    <div className="grid md:grid-cols-2 gap-8">
+    <div className="grid md:grid-cols-2 gap-6">
       {Object.entries(templates).map(([key, template]) => (
         <div
           key={key}

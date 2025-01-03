@@ -1,4 +1,14 @@
-export const dashboardStylePresets = [
+export interface StylePreset {
+  id: string;
+  name: string;
+  colors: string[];
+  gradient: {
+    from: string;
+    to: string;
+  };
+}
+
+export const dashboardStylePresets: StylePreset[] = [
   {
     id: "modern",
     name: "Modern",
