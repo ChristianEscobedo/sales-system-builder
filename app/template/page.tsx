@@ -55,8 +55,22 @@ const config: OptinConfig = {
   },
   video: {
     url: "https://cdn.pixabay.com/vimeo/505790725/abstract-71581.mp4?width=1280&hash=f32407a37fca0da9c934c8c8056e5850385f6c2d",
+    thumbnail: "/images/video-thumbnail.jpg",
+    duration: "45:00",
+    previewDuration: 30,
   },
 };
+
+interface VideoConfig {
+  url: string;
+  thumbnail: string;
+  duration: string;
+  previewDuration: number;
+}
+
+interface PageConfig {
+  video: VideoConfig;
+}
 
 export default function Template() {
   return (

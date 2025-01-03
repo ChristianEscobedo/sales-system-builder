@@ -5,12 +5,63 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ColorPicker } from "@/components/prompts/ColorPicker";
 import { courseStylePresets } from "@/lib/constants/course-style-presets";
 import type { CourseStylePreset } from "@/lib/constants/course-style-presets";
-import type { CourseData } from "@/types/course";
+import type { CourseData, CourseStyle } from "@/types/course";
 
 interface StyleTabProps {
   data: CourseData;
   onChange: (data: CourseData) => void;
 }
+
+interface StylePreset {
+  name: string;
+  theme: "light" | "dark";
+  colors: CourseStyle["colors"];
+}
+
+const stylePresets: StylePreset[] = [
+  {
+    name: "Dark Modern",
+    theme: "dark",
+    colors: {
+      primary: "#3B82F6",
+      secondary: "#6366F1",
+      accent: "#F472B6",
+      background: "#0A0A0A",
+      text: "#FFFFFF",
+      hover: {
+        text: "#3B82F6",
+        icon: "#F472B6",
+        background: "#FFFFFF1A"
+      },
+      gradients: {
+        enabled: true,
+        primary: "#3B82F6",
+        secondary: "#6366F1"
+      }
+    }
+  },
+  {
+    name: "Light Classic",
+    theme: "light",
+    colors: {
+      primary: "#2563EB",
+      secondary: "#4F46E5",
+      accent: "#EC4899",
+      background: "#FFFFFF",
+      text: "#111111",
+      hover: {
+        text: "#2563EB",
+        icon: "#EC4899",
+        background: "#0000001A"
+      },
+      gradients: {
+        enabled: false,
+        primary: "#2563EB",
+        secondary: "#4F46E5"
+      }
+    }
+  }
+];
 
 export function StyleTab({ data, onChange }: StyleTabProps) {
   const updateStyle = (field: keyof typeof data.style, value: any) => {
@@ -28,15 +79,17 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
     });
   };
 
-  const applyPreset = (preset: CourseStylePreset) => {
-    const presetStyle = courseStylePresets[preset];
-    onChange({
-      ...data,
-      style: {
-        theme: presetStyle.theme,
-        colors: { ...presetStyle.colors }
-      }
-    });
+  const applyPreset = (presetName: string) => {
+    const preset = stylePresets.find(p => p.name === presetName);
+    if (preset) {
+      onChange({
+        ...data,
+        style: {
+          theme: preset.theme,
+          colors: { ...preset.colors }
+        }
+      });
+    }
   };
 
   return (
@@ -44,26 +97,26 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
       <div>
         <Label className="text-white mb-4 block">Style Preset</Label>
         <RadioGroup
-          defaultValue="modern"
-          onValueChange={(val) => applyPreset(val as CourseStylePreset)}
+          defaultValue={stylePresets[0].name}
+          onValueChange={applyPreset}
           className="grid grid-cols-2 gap-4"
         >
-          {(Object.keys(courseStylePresets) as CourseStylePreset[]).map((preset) => (
-            <div key={preset} className="relative">
+          {stylePresets.map((preset) => (
+            <div key={preset.name} className="relative">
               <RadioGroupItem
-                value={preset}
-                id={preset}
+                value={preset.name}
+                id={preset.name}
                 className="peer sr-only"
               />
               <Label
-                htmlFor={preset}
+                htmlFor={preset.name}
                 className="flex flex-col gap-2 rounded-lg border-2 border-white/10 p-4 hover:bg-white/5 peer-data-[state=checked]:border-blue-500 cursor-pointer"
               >
                 <span className="font-semibold text-white">
-                  {courseStylePresets[preset].name}
+                  {preset.name}
                 </span>
                 <div className="flex gap-2">
-                  {Object.entries(courseStylePresets[preset].colors)
+                  {Object.entries(preset.colors)
                     .filter(([key]) => !key.includes('gradients'))
                     .map(([key, color]) => (
                       <div
@@ -72,13 +125,13 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
                         style={{ backgroundColor: color }}
                         title={key}
                       />
-                  ))}
+                    ))}
                 </div>
-                {courseStylePresets[preset].colors.gradients?.enabled && (
+                {preset.colors.gradients?.enabled && (
                   <div 
                     className="w-full h-4 rounded-full mt-2"
                     style={{
-                      background: `linear-gradient(to right, ${courseStylePresets[preset].colors.gradients.primary}, ${courseStylePresets[preset].colors.gradients.secondary})`
+                      background: `linear-gradient(to right, ${preset.colors.gradients.primary}, ${preset.colors.gradients.secondary})`
                     }}
                   />
                 )}

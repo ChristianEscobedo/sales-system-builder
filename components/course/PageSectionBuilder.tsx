@@ -16,6 +16,12 @@ interface PageSectionBuilderProps {
   onChange: (sections: PageSection[]) => void;
 }
 
+interface QuizQuestion {
+  question: string;
+  options: string[];
+  correctAnswer: number;
+}
+
 const sectionTypes: { value: SectionType; label: string; icon: React.ReactNode }[] = [
   { value: "title", label: "Title & Description", icon: <FileText size={16} /> },
   { value: "video", label: "Video Player", icon: <Video size={16} /> },
@@ -294,7 +300,7 @@ export function PageSectionBuilder({ sections, onChange }: PageSectionBuilderPro
                                         variant="ghost"
                                         size="sm"
                                         onClick={() => {
-                                          const newSteps = (section.content.steps || []).filter((_, i) => i !== stepIndex);
+                                          const newSteps = (section.content.steps || []).filter((_: string, i: number) => i !== stepIndex);
                                           updateSection(index, {
                                             content: { ...section.content, steps: newSteps }
                                           });
@@ -341,13 +347,17 @@ export function PageSectionBuilder({ sections, onChange }: PageSectionBuilderPro
                                       Add Item
                                     </Button>
                                   </div>
-                                  {(section.content.checklist || []).map((item: string, itemIndex: number) => (
-                                    <div key={itemIndex} className="flex gap-2">
+                                  {(section.content.checklist || [
+                                    "Complete this task",
+                                    "Review materials",
+                                    "Practice exercises"
+                                  ]).map((item: string, i: number) => (
+                                    <div key={i} className="flex gap-2">
                                       <Input
                                         value={item}
                                         onChange={(e) => {
                                           const newItems = [...(section.content.checklist || [])];
-                                          newItems[itemIndex] = e.target.value;
+                                          newItems[i] = e.target.value;
                                           updateSection(index, {
                                             content: { ...section.content, checklist: newItems }
                                           });
@@ -358,7 +368,8 @@ export function PageSectionBuilder({ sections, onChange }: PageSectionBuilderPro
                                         variant="ghost"
                                         size="sm"
                                         onClick={() => {
-                                          const newItems = (section.content.checklist || []).filter((_, i) => i !== itemIndex);
+                                          const newItems = (section.content.checklist || [])
+                                            .filter((_: string, j: number) => j !== i);
                                           updateSection(index, {
                                             content: { ...section.content, checklist: newItems }
                                           });
@@ -395,7 +406,7 @@ export function PageSectionBuilder({ sections, onChange }: PageSectionBuilderPro
                                       Add Question
                                     </Button>
                                   </div>
-                                  {(section.content.questions || []).map((q: any, qIndex: number) => (
+                                  {(section.content.questions || []).map((q: QuizQuestion, qIndex: number) => (
                                     <div key={qIndex} className="space-y-4 bg-white/5 p-4 rounded-lg">
                                       <div className="flex gap-2">
                                         <Input
@@ -414,7 +425,8 @@ export function PageSectionBuilder({ sections, onChange }: PageSectionBuilderPro
                                           variant="ghost"
                                           size="sm"
                                           onClick={() => {
-                                            const newQuestions = (section.content.questions || []).filter((_, i) => i !== qIndex);
+                                            const newQuestions = (section.content.questions || [])
+                                              .filter((_: QuizQuestion, i: number) => i !== qIndex);
                                             updateSection(index, {
                                               content: { ...section.content, questions: newQuestions }
                                             });
@@ -520,7 +532,11 @@ function SectionPreview({ section }: { section: PageSection }) {
             {section.content.title || "Checklist"}
           </h3>
           <div className="space-y-3">
-            {(section.content.checklist || ["Complete this task", "Review materials", "Practice exercises"]).map((item, i) => (
+            {(section.content.checklist || [
+              "Complete this task",
+              "Review materials",
+              "Practice exercises"
+            ]).map((item: string, i: number) => (
               <div key={i} className="flex items-center gap-3 text-gray-300">
                 <CheckSquare className="text-blue-400 flex-shrink-0" />
                 <span>{item}</span>
@@ -541,7 +557,7 @@ function SectionPreview({ section }: { section: PageSection }) {
               "Course Workbook.pdf",
               "Implementation Guide.pdf",
               "Resource Links.txt"
-            ]).map((resource, i) => (
+            ]).map((resource: string, i: number) => (
               <div key={i} className="flex items-center gap-3 text-gray-300">
                 <FileText className="text-blue-400 flex-shrink-0" />
                 <span>{resource}</span>
@@ -562,11 +578,11 @@ function SectionPreview({ section }: { section: PageSection }) {
               "What is the main concept covered in this lesson?",
               "How would you implement this in your business?",
               "What results can you expect from this strategy?"
-            ]).map((question, i) => (
+            ]).map((question: string, i: number) => (
               <div key={i} className="space-y-2">
                 <p className="text-gray-300">{question}</p>
                 <div className="pl-6 space-y-2">
-                  {["A", "B", "C"].map((option) => (
+                  {["A", "B", "C"].map((option: string) => (
                     <div key={option} className="flex items-center gap-2 text-gray-400">
                       <div className="w-4 h-4 rounded-full border border-gray-500" />
                       <span>Option {option}</span>

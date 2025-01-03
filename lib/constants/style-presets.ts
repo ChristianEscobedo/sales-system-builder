@@ -1,38 +1,40 @@
 export const dashboardStylePresets = [
   {
     id: "modern",
-    name: "Modern & Clean",
-    colors: ["#6366F1", "#8B5CF6", "#4F46E5"],
+    name: "Modern",
+    colors: ["#9333EA", "#2563EB", "#10B981"],
     gradient: {
-      from: "#4338CA",
-      to: "#6366F1"
+      from: "#9333EA",
+      to: "#2563EB"
+    }
+  },
+  {
+    id: "classic",
+    name: "Classic",
+    colors: ["#1E293B", "#334155", "#475569"],
+    gradient: {
+      from: "#1E293B",
+      to: "#475569"
     }
   },
   {
     id: "minimal",
-    name: "Minimal Light",
-    colors: ["#18181B", "#27272A", "#3B82F6"],
+    name: "Minimal",
+    colors: ["#18181B", "#27272A", "#3F3F46"],
     gradient: {
-      from: "#F8FAFC",
-      to: "#E2E8F0"
-    }
-  },
-  {
-    id: "premium",
-    name: "Premium Dark",
-    colors: ["#B4833E", "#3E4E74", "#C69C6D"],
-    gradient: {
-      from: "#1A1C2A",
-      to: "#2C1810"
+      from: "#18181B",
+      to: "#3F3F46"
     }
   },
   {
     id: "vibrant",
-    name: "Vibrant & Dynamic",
-    colors: ["#FF3366", "#00CC99", "#FFD60A"],
+    name: "Vibrant",
+    colors: ["#F472B6", "#8B5CF6", "#3B82F6"],
     gradient: {
-      from: "#FF3366",
-      to: "#00CC99"
+      from: "#F472B6",
+      to: "#3B82F6"
     }
   }
-] as const;
+];
+
+export const stylePresets = dashboardStylePresets;

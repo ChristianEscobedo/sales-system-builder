@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 const DashboardContent = dynamic(
-  () => import('./DashboardContent'),
+  () => import('./DashboardContent').then(mod => mod.DashboardContent),
   { 
     loading: () => <div>Loading dashboard...</div>
   }

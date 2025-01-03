@@ -4,7 +4,7 @@ import { useState } from "react";
 import { EmailHeader } from "@/components/email-ascension/EmailHeader";
 import { EmailForm } from "@/components/email-ascension/EmailForm";
 import { EmailPreview } from "@/components/email-ascension/EmailPreview";
-import type { AscensionEmailData } from "@/types/email-ascension";
+import type { AscensionEmailData } from "@/types/email";
 
 export default function HighTicketAscensionPage() {
   const [emailData, setEmailData] = useState<AscensionEmailData>({
@@ -17,16 +17,12 @@ export default function HighTicketAscensionPage() {
     webinarDate: "",
     webinarTime: "",
     webinarTitle: "",
-    callToAction: "webinar", // or "call" or "workshop" or "masterclass"
-    highTicketOffer: "",
-    highTicketPrice: "",
     bonusName: "",
-    bonusValue: 997,
-    emails: Array.from({ length: 14 }, (_, i) => ({
-      day: i + 1,
-      subject: "",
-      body: ""
-    }))
+    bonusValue: "",
+    earlyBirdDiscount: "",
+    hiddenBonusName: "",
+    hiddenBonusValue: "",
+    emails: []
   });
 
   return (

@@ -12,23 +12,5 @@ export interface PromptData {
   industryNiche: string;
   productPrice: number;
   supportEmail: string;
-  colorTheme: {
-    primary: string;
-    secondary: string;
-    background: string;
-    text: string;
-    accent: string;
-    gradients?: string[];
-  };
-  // AI-generated fields
-  painPoints: string[];
-  industryStats: string[];
-  storyHook: string;
-  desiredOutcome: string;
-  trustElements: string[];
-  socialProof: {
-    downloads: number;
-    successStories: string[];
-    industryRecognition: string[];
-  };
+  // Add any other required properties here
 }

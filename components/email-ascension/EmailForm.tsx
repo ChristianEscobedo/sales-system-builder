@@ -1,13 +1,11 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BasicInfoTab } from "./tabs/BasicInfoTab";
-import { EmailsTab } from "./tabs/EmailsTab";
-import type { AscensionEmailData } from "@/types/email-ascension";
+import { Dispatch, SetStateAction } from "react";
+import type { AscensionEmailData } from "@/types/email";
 
 interface EmailFormProps {
   data: AscensionEmailData;
-  onChange: (data: AscensionEmailData) => void;
+  onChange: Dispatch<SetStateAction<AscensionEmailData>>;
 }
 
 export function EmailForm({ data, onChange }: EmailFormProps) {

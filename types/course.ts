@@ -6,31 +6,32 @@ export interface CourseLesson {
   description?: string;
   thumbnail?: string;
   sections?: PageSection[];
+  resourceUrl?: string;
 }
 
 export type SectionType = 
-  | "title"
-  | "video"
-  | "summary"
-  | "resources"
-  | "action"
-  | "checklist"
-  | "notes"
-  | "quiz"
-  | "feedback";
+  | 'title'
+  | 'video'
+  | 'layout'
+  | 'image'
+  | 'summary'
+  | 'resources'
+  | 'action'
+  | 'checklist'
+  | 'notes'
+  | 'quiz'
+  | 'feedback'
+  | 'steps'
+  | 'cta';
 
 export interface PageSection {
   type: SectionType;
   content: {
     title?: string;
     description?: string;
-    videoUrl?: string;
-    resources?: string[];
-    checklist?: string[];
-    buttonText?: string;
-    buttonAction?: string;
+    [key: string]: any;
   };
-  order: number;
+  order?: number;
 }
 
 export interface CourseModule {

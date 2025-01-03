@@ -145,7 +145,9 @@ export function CoursePreview({ data }: CoursePreviewProps) {
           />
         ) : (
           <FullPreview
-            lesson={currentLesson}
+            lesson={{
+              sections: currentLesson?.sections || []
+            }}
             colors={colors}
           />
         )}
