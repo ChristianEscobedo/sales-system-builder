@@ -1,40 +1,65 @@
 "use client";
 
 import { useState } from "react";
-import { PromptHeader } from "@/components/prompts/PromptHeader";
 import { PromptForm } from "@/components/prompts/PromptForm";
 import { PromptPreview } from "@/components/prompts/PromptPreview";
+import { PromptHeader } from "@/components/prompts/PromptHeader";
 import type { PromptData } from "@/types/prompt";
 
+const defaultPromptData: PromptData = {
+  resourceType: "",
+  resourceName: "",
+  painPoint: "",
+  quickWin: "",
+  frustrationMethod: "",
+  timeFrame: "30 days",
+  modules: [],
+  bonusName: "",
+  bonusValue: 997,
+  targetAudience: "",
+  industryNiche: "",
+  productPrice: 997,
+  supportEmail: "",
+  colorTheme: {
+    primary: "#6366F1",
+    secondary: "#8B5CF6",
+    background: "#000000",
+    text: "#FFFFFF",
+    hoverText: "#F3F4F6",
+    selectedText: "#4F46E5",
+    accent: "#4F46E5",
+    gradients: []
+  },
+  painPoints: [],
+  industryStats: [],
+  storyHook: "",
+  desiredOutcome: "",
+  trustElements: [],
+  socialProof: {
+    downloads: 0,
+    successStories: [],
+    industryRecognition: []
+  }
+};
+
 export default function PromptsPage() {
-  const [promptData, setPromptData] = useState<PromptData>({
-    resourceType: "Course",
-    resourceName: "",
-    painPoint: "",
-    quickWin: "",
-    frustrationMethod: "",
-    timeFrame: "",
-    modules: [],
-    bonusName: "",
-    bonusValue: 0,
-    targetAudience: "",
-    industryNiche: "",
-    productPrice: "$0",
-    supportEmail: ""
-  });
+  const [promptData, setPromptData] = useState<PromptData>(defaultPromptData);
 
   return (
-    <main className="min-h-screen relative overflow-hidden bg-[#050505]">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-950/5 via-black to-purple-950/5 z-0" />
-      
-      <div className="relative z-20 container mx-auto px-4 py-16">
-        <PromptHeader onGenerate={setPromptData} />
+    <div className="min-h-screen bg-[#050505] py-8">
+      <div className="container mx-auto px-4">
+        <PromptHeader />
         
-        <div className="grid lg:grid-cols-2 gap-8 mt-8">
-          <PromptForm data={promptData} onChange={setPromptData} />
-          <PromptPreview data={promptData} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+          <PromptForm 
+            data={promptData} 
+            onChange={setPromptData} 
+          />
+          <PromptPreview 
+            data={promptData} 
+          />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

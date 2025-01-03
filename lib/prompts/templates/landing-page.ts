@@ -1,9 +1,10 @@
-export const LANDING_PAGE_TEMPLATE = `
-This is Part 1 of a Complete Sales System Including Landing Page, Bridge Page, and Thank You Page.
+import type { PromptTemplate } from "@/types/prompt";
+
+export const LANDING_PAGE_TEMPLATE = `This is Part 1 of a Complete Sales System Including Landing Page, Bridge Page, and Thank You Page.
 
 [SYSTEM INSTRUCTIONS]
-Create a complete sales system using an ultra-modern design approach with gradients from [PRIMARY_COLOR] to [SECONDARY_COLOR]. 
-Build using Next.js 15+ app router with Shadcn UI components. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section 
+Create a complete sales system using an ultra-modern design approach with background [BACKGROUND_COLOR] and subtle gradients from [PRIMARY_COLOR] to [SECONDARY_COLOR]. Use a text color of [TEXT_COLOR] and [HOVER_COLOR] and [SELECTED_COLOR] and [ACCENT_COLOR]
+Build using Next.js 15+ app router with Shadcn UI components. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section
 
 [TECHSTACK]
 - Next.js 15+ with App Router
@@ -13,25 +14,28 @@ Build using Next.js 15+ app router with Shadcn UI components. for any [] shortco
 - React Hook Form for interactive elements
 
 [PART 1: LANDING PAGE]
-Primary Headline: "Get Our Free [RESOURCE_NAME] That Shows You How To [SOLVE_PAIN_POINT] & [ACHIEVE_QUICK_WIN] Without [FRUSTRATION_METHOD]"
-
-[PART 2: BRIDGE HEADER]
-ONE-TIME OFFER BANNER:
-"WAIT! SPECIAL ONE-TIME ONLY OFFER"
-"Do Not Close This Page… Your Order Is NOT YET COMPLETE."
 
 HERO SECTION:
 Primary Headline: "HOW WOULD YOU LIKE TO [SOLVE_PAIN_POINT] THAT [ACHIEVE_QUICK_WIN] WITHOUT [FRUSTRATION_METHOD]?"
 
-Supporting Copy:
-"What is your goal? Would you like to win more [INDUSTRY_NICHE] business, keep it longer, and be the best in the field?
-I am certain that you would!
-[RESOURCE_NAME] will provide you with a much-needed foundation, but there is one more thing I can do to add to it.
-My goal was to create this specifically for [TARGET_AUDIENCE] - those who are hungry for success and who don't want to waste time."
+Secondary Headline: "Get Our Free [RESOURCE_NAME] That Shows You How To [SOLVE_PAIN_POINT] & [ACHIEVE_QUICK_WIN] Without [FRUSTRATION_METHOD]"
 
-[PART 3: BRIDGE SALES]
+Supporting Copy:
+Would you like to [RESOURCE_PROMISE] {Make this punchy and grab attention}
+
+[PART 3: CHECKLIST]
 CORE PROMISE:
-"USING THIS PROVEN SYSTEM, YOU CAN ACHIEVE YOUR GOALS IN [TIME_FRAME]!"
+"USING THIS PROVEN SYSTEM, YOU WILL GET INSTANT ACCESS TO"
+
+✅ How to create [MICRO_RESULT] in [TIME_FRAME]
+
+✅ Easily [NICHE_TOPIC] that builds trust and authority amplifying not [COMMON_OBSTACLE]...
+
+✅ A new way to [ACHIEVE_QUICK_WIN] using our proprietary strategy '[UNIQUE_MECHANISM]'...
+
+✅ How we drastically expand our reach with '[SYSTEM_NAME]'
+
+✅ BONUS - Get the [BONUS_NAME] just for showing up... (Value $[BONUS_VALUE])
 
 KEY BENEFITS PREVIEW:
 - Discover the exact blueprint for [SOLVE_PAIN_POINT]
@@ -50,23 +54,23 @@ Style: Ultra-modern, premium
 Colors:
 - Primary: [PRIMARY_COLOR]
 - Secondary: [SECONDARY_COLOR]
-- Background: Black with gradient overlay
-- Text: White with premium contrast
+- Background: [BACKGROUND_COLOR]
+- Text: [TEXT_COLOR]
 Typography: Inter font family
 Animations: Smooth transitions, parallax effects
 Components: Modern shadcn/ui elements
 
 [DYNAMIC FIELDS]
-RESOURCE_NAME: Input from form
-SOLVE_PAIN_POINT: Input from form
-ACHIEVE_QUICK_WIN: Input from form
-FRUSTRATION_METHOD: Input from form
-TIME_FRAME: Input from form
-TARGET_AUDIENCE: Input from form
-INDUSTRY_NICHE: Input from form
-PRIMARY_COLOR: Input from form (default: #6366F1)
-SECONDARY_COLOR: Input from form (default: #8B5CF6)
-PAIN_POINTS: [AI generated based on user's pain point input]
+RESOURCE_NAME: [RESOURCE_NAME]
+SOLVE_PAIN_POINT: [SOLVE_PAIN_POINT]
+ACHIEVE_QUICK_WIN: [ACHIEVE_QUICK_WIN]
+FRUSTRATION_METHOD: [FRUSTRATION_METHOD]
+TIME_FRAME: [TIME_FRAME]
+TARGET_AUDIENCE: [TARGET_AUDIENCE]
+INDUSTRY_NICHE: [INDUSTRY_NICHE]
+PRIMARY_COLOR: [PRIMARY_COLOR]
+SECONDARY_COLOR: [SECONDARY_COLOR]
+PAIN_POINTS: [PAIN_POINTS]
 
 [PAGE STRUCTURE]
 1. Hero Section
@@ -79,16 +83,23 @@ PAIN_POINTS: [AI generated based on user's pain point input]
 [REQUIRED PAGES]
 - Landing Page
 - Bridge Page
+- Checkout Page
+- Upsell One Page
+- Upsell Checkout Page
 - Thank You Page
 - Member Access
+- Mini Course
+- Login Page
 - Resources Library`;
 
 export const defaultPromptValues = {
-  RESOURCE_TYPE: "AI-Powered Solution",
+  RESOURCE_TYPE: "Online Course",
   PRIMARY_COLOR: "#6366F1",
   SECONDARY_COLOR: "#8B5CF6",
-  TIME_FRAME: "60 minutes",
-  DOWNLOAD_COUNT: "10,000",
-  BONUS_VALUE: "97",
-  PRIMARY_CTA: "Get Instant Access"
+  BACKGROUND_COLOR: "#000000",
+  TEXT_COLOR: "#FFFFFF",
+  HOVER_COLOR: "#F3F4F6",
+  SELECTED_COLOR: "#4F46E5",
+  ACCENT_COLOR: "#4F46E5",
+  TIME_FRAME: "30 days"
 };

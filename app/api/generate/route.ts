@@ -1,35 +1,35 @@
 import { OpenAI } from "openai";
 import { NextResponse } from "next/server";
-import type { PromptBrief } from "@/lib/api/prompt";
-import { generatePromptContent } from "@/lib/prompts/generate-prompt";
-
-if (!process.env.OPENAI_API_KEY) {
-  throw new Error("Missing OPENAI_API_KEY environment variable");
-}
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY
 });
 
 export async function POST(request: Request) {
   try {
-    const brief: PromptBrief = await request.json();
+    const { niche, audience, mainTopic, description } = await request.json();
 
-    const prompt = generatePromptContent({
-      resourceType: "Course",
-      resourceName: brief.courseName,
-      painPoint: brief.problem,
-      quickWin: brief.solution,
-      frustrationMethod: brief.currentMethod,
-      timeFrame: "30 days",
-      modules: [],
-      bonusName: "VIP Support",
-      bonusValue: 997,
-      targetAudience: brief.audience,
-      industryNiche: brief.audience,
-      productPrice: "$997",
-      supportEmail: "support@example.com"
-    });
+    const prompt = `Generate a complete course content structure based on the following:
+
+Niche: ${niche}
+Target Audience: ${audience}
+Main Topic: ${mainTopic}
+Description: ${description}
+
+Please provide the following details in a JSON format:
+- resourceType (string)
+- resourceName (string)
+- painPoint (string)
+- quickWin (string)
+- frustrationMethod (string)
+- timeFrame (string)
+- modules (array of strings)
+- bonusName (string)
+- bonusValue (number)
+- targetAudience (string)
+- industryNiche (string)
+- productPrice (number)
+- supportEmail (string)`;
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
@@ -43,15 +43,10 @@ export async function POST(request: Request) {
           content: prompt
         }
       ],
-      temperature: 0.7,
-      max_tokens: 2000
+      response_format: { type: "json_object" }
     });
 
-    const content = completion.choices[0].message.content;
-
-    if (!content) {
-      throw new Error("No content generated");
-    }
+    const content = JSON.parse(completion.choices[0].message.content || "{}");
 
     return NextResponse.json({ content });
   } catch (error) {
