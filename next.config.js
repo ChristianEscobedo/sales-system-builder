@@ -2,18 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  output: 'standalone',
-  images: {
-    domains: [
-      'your-domain.com'
-    ],
-  },
   experimental: {
-    outputFileTracingRoot: undefined,
-  }
+    appDir: true,
+  },
 }
 
 module.exports = nextConfig

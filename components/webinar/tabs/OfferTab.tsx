@@ -1,71 +1,145 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
-import type { WebinarData } from "@/types/webinar";
+import type { WebinarData, Bonus } from "@/types/webinar";
 
 interface OfferTabProps {
   data: WebinarData;
-  onChange: Dispatch<SetStateAction<WebinarData>>;
+  onChange: (data: WebinarData) => void;
 }
 
 export function OfferTab({ data, onChange }: OfferTabProps) {
-  const updateSlide = (index: number, content: any) => {
-    onChange(prev => ({
-      ...prev,
-      slides: prev.slides.map((slide, i) => 
-        i === index && slide.type === "offer" 
-          ? { ...slide, content }
-          : slide
-      )
-    }));
+  // Initialize offer if it doesn't exist
+  const offer = data.offer || {
+    name: "",
+    price: "",
+    value: "",
+    guarantee: "",
+    bonuses: []
   };
 
-  const offerSlide = data.slides.find(slide => slide.type === "offer");
-  if (!offerSlide) return null;
+  const updateOffer = (field: keyof typeof offer, value: any) => {
+    onChange({
+      ...data,
+      offer: { ...offer, [field]: value }
+    });
+  };
+
+  const addBonus = () => {
+    const newBonus: Bonus = {
+      name: "",
+      value: "",
+      description: ""
+    };
+    updateOffer("bonuses", [...(offer.bonuses || []), newBonus]);
+  };
+
+  const updateBonus = (index: number, field: keyof Bonus, value: string) => {
+    const newBonuses = [...(offer.bonuses || [])];
+    newBonuses[index] = { ...newBonuses[index], [field]: value };
+    updateOffer("bonuses", newBonuses);
+  };
+
+  const removeBonus = (index: number) => {
+    const newBonuses = (offer.bonuses || []).filter((_, i) => i !== index);
+    updateOffer("bonuses", newBonuses);
+  };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div>
         <Label className="text-white">Offer Name</Label>
         <Input
-          value={offerSlide.content.name || ""}
-          onChange={(e) => updateSlide(data.slides.indexOf(offerSlide), {
-            ...offerSlide.content,
-            name: e.target.value
-          })}
-          className="bg-white/10 border-purple-500/30 text-white"
+          value={offer.name}
+          onChange={(e) => updateOffer("name", e.target.value)}
           placeholder="e.g., Agency Growth Accelerator"
+          className="bg-white/10 border-purple-500/30 text-white"
         />
       </div>
 
-      <div>
-        <Label className="text-white">Price</Label>
-        <Input
-          value={offerSlide.content.price || ""}
-          onChange={(e) => updateSlide(data.slides.indexOf(offerSlide), {
-            ...offerSlide.content,
-            price: e.target.value
-          })}
-          className="bg-white/10 border-purple-500/30 text-white"
-          placeholder="e.g., $997"
-        />
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <Label className="text-white">Regular Price</Label>
+          <Input
+            value={offer.value}
+            onChange={(e) => updateOffer("value", e.target.value)}
+            placeholder="e.g., 1997"
+            className="bg-white/10 border-purple-500/30 text-white"
+          />
+        </div>
+        <div>
+          <Label className="text-white">Special Price</Label>
+          <Input
+            value={offer.price}
+            onChange={(e) => updateOffer("price", e.target.value)}
+            placeholder="e.g., 997"
+            className="bg-white/10 border-purple-500/30 text-white"
+          />
+        </div>
       </div>
 
       <div>
-        <Label className="text-white">Value Proposition</Label>
+        <Label className="text-white">Guarantee</Label>
         <Input
-          value={offerSlide.content.value || ""}
-          onChange={(e) => updateSlide(data.slides.indexOf(offerSlide), {
-            ...offerSlide.content,
-            value: e.target.value
-          })}
+          value={offer.guarantee}
+          onChange={(e) => updateOffer("guarantee", e.target.value)}
+          placeholder="e.g., 30-Day Money Back Guarantee"
           className="bg-white/10 border-purple-500/30 text-white"
-          placeholder="e.g., Total Value: $4,997"
         />
+      </div>
+
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <Label className="text-white">Bonuses</Label>
+          <Button
+            variant="ghost"
+            onClick={addBonus}
+            className="text-purple-400 hover:text-purple-300"
+          >
+            <Plus size={16} className="mr-2" />
+            Add Bonus
+          </Button>
+        </div>
+
+        {(offer.bonuses || []).map((bonus, index) => (
+          <div key={index} className="space-y-2 bg-white/5 p-4 rounded-lg">
+            <div className="flex justify-between items-start">
+              <Label className="text-white">Bonus {index + 1}</Label>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => removeBonus(index)}
+                className="text-red-400 hover:text-red-300"
+              >
+                <Trash2 size={16} />
+              </Button>
+            </div>
+            
+            <Input
+              value={bonus.name}
+              onChange={(e) => updateBonus(index, "name", e.target.value)}
+              placeholder="Bonus name"
+              className="bg-white/10 border-purple-500/30 text-white"
+            />
+            
+            <Input
+              value={bonus.value}
+              onChange={(e) => updateBonus(index, "value", e.target.value)}
+              placeholder="Value (e.g., 497)"
+              className="bg-white/10 border-purple-500/30 text-white"
+            />
+            
+            <Input
+              value={bonus.description}
+              onChange={(e) => updateBonus(index, "description", e.target.value)}
+              placeholder="Brief description"
+              className="bg-white/10 border-purple-500/30 text-white"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

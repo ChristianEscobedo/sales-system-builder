@@ -31,7 +31,7 @@ const builders = [
     subtitle: "Landing Page Builder",
     description: "Create high-converting landing pages with our drag & drop builder.",
     icon: <LayoutTemplate className="w-6 h-6 text-purple-400" />,
-    link: "/template"
+    link: "/prompts"
   },
   {
     title: "Email Sequence",
@@ -74,32 +74,38 @@ const templates = [
   {
     title: "High-Ticket Sales Funnel",
     description: "Complete funnel template for selling premium offers.",
-    category: "Sales Funnel"
+    category: "Sales Funnel",
+    link: "/template"
   },
   {
-    title: "Webinar Registration",
+    title: "Webinar Registration", 
     description: "Convert visitors into webinar attendees.",
-    category: "Landing Page"
+    category: "Landing Page",
+    link: "/template-bridge"
   },
   {
     title: "Mini Course Launch",
     description: "Launch your digital course with this proven template.",
-    category: "Course Launch"
+    category: "Course Launch", 
+    link: "/template-checkout"
   },
   {
     title: "VSL Funnel",
     description: "Video-based sales funnel for digital products.",
-    category: "Sales Funnel"
+    category: "Sales Funnel",
+    link: ""
   },
   {
     title: "Lead Magnet Funnel",
     description: "Grow your email list with valuable free content.",
-    category: "Lead Generation"
+    category: "Lead Generation",
+    link: ""
   },
   {
     title: "Strategy Call Funnel",
     description: "Book more high-ticket strategy calls.",
-    category: "Sales Funnel"
+    category: "Sales Funnel",
+    link: ""
   }
 ];
 
@@ -113,7 +119,7 @@ const library = [
   {
     title: "Course Launch Emails",
     description: "14-day launch sequence for digital course.",
-    lastModified: "1 week ago",
+    lastModified: "1 week ago", 
     icon: <Mail className="w-6 h-6 text-purple-400" />
   },
   {
@@ -201,12 +207,23 @@ export function DashboardContent() {
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">{template.title}</h3>
                   <p className="text-sm text-gray-400 mb-4">{template.description}</p>
-                  <Button 
-                    variant="outline" 
-                    className="w-full hover:bg-purple-500/10 hover:text-purple-400"
-                  >
-                    Use Template
-                  </Button>
+                  {template.link ? (
+                    <Button 
+                      asChild
+                      variant="outline" 
+                      className="w-full hover:bg-purple-500/10 hover:text-purple-400"
+                    >
+                      <a href={template.link}>View Template</a>
+                    </Button>
+                  ) : (
+                    <Button 
+                      variant="outline" 
+                      className="w-full hover:bg-purple-500/10 hover:text-purple-400"
+                      disabled
+                    >
+                      Coming Soon
+                    </Button>
+                  )}
                 </Card>
               ))}
             </div>
@@ -472,4 +489,3 @@ export function DashboardContent() {
     </main>
   );
 }
-

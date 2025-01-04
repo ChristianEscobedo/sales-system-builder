@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { DashboardContent } from './_components/DashboardContent';
+import { DashboardWrapper } from "./_components/DashboardWrapper";
 
 export default function DashboardPage() {
-  return <DashboardContent />;
+  return <DashboardWrapper />;
 }
