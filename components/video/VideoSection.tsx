@@ -16,51 +16,37 @@ const VIDEOS: Video[] = [
     description: "Learn the step-by-step process of building effective sales pages that convert visitors into customers"
   },
   {
-    id: "video2",
-    title: "Video 2 Title",
-    description: "Master the art of sales copywriting"
-  },
-  {
-    id: "video3",
-    title: "Video 3 Title",
-    description: "Advanced sales page strategies"
-  },
-  {
-    id: "video4",
-    title: "Video 4 Title",
-    description: "Pro tips for maximum conversions"
+    id: "1miVu99587g",
+    title: "Video 2. Understanding Sales Systems",
+    description: "Deep dive into how sales systems work and how to create effective funnels that convert"
   }
 ];
 
 export function VideoSection() {
-  const [currentVideo, setCurrentVideo] = useState<Video>(VIDEOS[0]);
+  const [currentVideo, setCurrentVideo] = useState(VIDEOS[0]);
 
   return (
-    <div className="mb-12 bg-white/5 backdrop-blur-sm rounded-2xl p-6">
-      <div className="aspect-video mb-6">
+    <div className="mb-12">
+      <div className="aspect-video w-full max-w-3xl mx-auto mb-4">
         <iframe
+          width="100%"
+          height="100%"
           src={`https://www.youtube.com/embed/${currentVideo.id}`}
-          className="w-full h-full rounded-xl"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          title={currentVideo.title}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         />
       </div>
 
-      <Tabs 
-        defaultValue={VIDEOS[0].id} 
-        className="w-full"
-        onValueChange={(value) => {
-          const video = VIDEOS.find(v => v.id === value);
-          if (video) setCurrentVideo(video);
-        }}
-      >
-        <TabsList className="grid grid-cols-4 w-full">
+      <Tabs defaultValue={currentVideo.id} onValueChange={(value) => {
+        const video = VIDEOS.find(v => v.id === value);
+        if (video) setCurrentVideo(video);
+      }}>
+        <TabsList className="grid grid-cols-2 w-full max-w-2xl mx-auto">
           {VIDEOS.map((video) => (
-            <TabsTrigger 
-              key={video.id} 
-              value={video.id}
-              className="text-sm"
-            >
+            <TabsTrigger key={video.id} value={video.id}>
               {video.title}
             </TabsTrigger>
           ))}
