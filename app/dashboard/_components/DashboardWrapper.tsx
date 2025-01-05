@@ -1,11 +1,12 @@
 "use client";
 
 import dynamic from 'next/dynamic';
+import { LoadingState } from '@/components/ui/loading-state';
 
 const DashboardContent = dynamic(
   () => import('./DashboardContent').then(mod => mod.DashboardContent),
   { 
-    loading: () => <div>Loading dashboard...</div>
+    loading: () => <LoadingState message="Loading dashboard..." />
   }
 );
 

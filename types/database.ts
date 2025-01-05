@@ -9,15 +9,28 @@ export interface SavedPrompt {
 
 export type UserTier = 'free' | 'pro' | 'whitelabel' | 'master';
 
+export type SubscriptionTier = 'free' | 'pro' | 'enterprise';
+
+export interface UserSubscription {
+  id: string;
+  user_id: string;
+  tier: SubscriptionTier;
+  status: 'active' | 'canceled' | 'past_due';
+  current_period_end: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Profile {
   id: string;
+  user_id: string;
   email: string;
   full_name?: string;
-  avatar_url?: string;
-  tier: UserTier;
-  tier_expires_at?: string;
-  credits_remaining?: number;
-  updated_at?: string;
+  subscription_tier: SubscriptionTier;
+  subscription_status: 'active' | 'canceled' | 'past_due';
+  subscription_id?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface TierFeatures {

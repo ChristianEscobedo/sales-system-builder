@@ -24,6 +24,8 @@ import {
   Calendar,
   Settings
 } from "lucide-react";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { UpgradeDialog } from "@/components/subscription/UpgradeDialog";
 
 const builders = [
   {
@@ -131,7 +133,15 @@ const library = [
 ];
 
 export function DashboardContent() {
+  const { checkAccess, showUpgradeDialog, currentFeature, closeUpgradeDialog } = useFeatureAccess();
   const [selectedTab, setSelectedTab] = useState("builders");
+
+  const handleFeatureClick = (feature: "optin" | "sales" | "webinar" | "course" | "email") => {
+    if (checkAccess(feature)) {
+      // Navigate to feature
+      window.location.href = `/${feature}-builder`;
+    }
+  };
 
   return (
     <main className="min-h-screen relative">
@@ -169,7 +179,7 @@ export function DashboardContent() {
           <TabsContent value="builders" className="space-y-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {builders.map((builder) => (
-                <Card key={builder.title} className="bg-white/5 border-white/10 p-6 hover:bg-white/10 transition-colors group">
+                <Card key={builder.title} className="bg-white/5 border-white/10 p-6 hover:bg-white/10 transition-colors group cursor-pointer" onClick={() => handleFeatureClick(builder.link.split('/')[1])}>
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center">
                       {builder.icon}
@@ -486,6 +496,12 @@ export function DashboardContent() {
         </Tabs>
       </div>
       </div>
+
+      <UpgradeDialog 
+        isOpen={showUpgradeDialog}
+        onClose={closeUpgradeDialog}
+        feature={currentFeature}
+      />
     </main>
   );
 }

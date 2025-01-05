@@ -4,18 +4,22 @@ import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase/client';
 import { toast } from '@/components/ui/use-toast';
+import type { Profile } from '@/types/database';
+import { getUserSubscription } from '@/services/subscription';
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
+  profile: Profile | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<AuthContextType>({
   user: null,
   session: null,
+  profile: null,
   loading: true,
   signIn: async () => {},
   signOut: async () => {},
@@ -24,8 +28,15 @@ const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const initialized = useRef(false);
+
+  // Fetch user profile and subscription
+  const fetchUserProfile = async (userId: string) => {
+    const profile = await getUserSubscription();
+    setProfile(profile);
+  };
 
   useEffect(() => {
     if (initialized.current) return;
@@ -34,13 +45,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const initializeAuth = async () => {
       try {
         const { data: { session: initialSession } } = await supabase.auth.getSession();
-        console.log("Initial auth state:", { 
-          hasSession: !!initialSession,
-          path: window.location.pathname 
-        });
         
-        setSession(initialSession);
-        setUser(initialSession?.user ?? null);
+        if (initialSession) {
+          setSession(initialSession);
+          setUser(initialSession.user);
+          await fetchUserProfile(initialSession.user.id);
+        }
       } catch (error) {
         console.error("Auth initialization error:", error);
       } finally {
@@ -50,10 +60,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     initializeAuth();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, currentSession) => {
-      console.log("Auth state changed:", { event, hasSession: !!currentSession });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, currentSession) => {
       setSession(currentSession);
       setUser(currentSession?.user ?? null);
+      
+      if (currentSession?.user) {
+        await fetchUserProfile(currentSession.user.id);
+      } else {
+        setProfile(null);
+      }
     });
 
     return () => {
@@ -95,7 +110,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, session, profile, loading, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
