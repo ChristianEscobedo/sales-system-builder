@@ -1,35 +1,36 @@
 import { NextResponse } from 'next/server';
 import type { PromptData } from '@/types/prompt';
-
-interface GenerateRequest {
-  niche: string;
-  audience: string;
-  mainTopic: string;
-  description: string;
-}
+import { generateCourseContent } from '@/lib/openai';
 
 export async function POST(request: Request) {
-  try {
-    const { niche, audience, mainTopic, description }: GenerateRequest = await request.json();
+  if (!process.env.OPENAI_API_KEY) {
+    console.error('OpenAI API key not configured');
+    return NextResponse.json(
+      { error: 'Server configuration error' },
+      { status: 500 }
+    );
+  }
 
-    // This is where you'd integrate with your AI service
-    // For now, we'll return sample data based on the input
+  try {
+    const brief = await request.json();
+
+    if (!brief.niche || !brief.audience || !brief.mainTopic) {
+      return NextResponse.json(
+        { error: 'Missing required fields: niche, audience, or mainTopic' },
+        { status: 400 }
+      );
+    }
+
+    console.log('Generating content for:', brief); // Debug log
+
+    const aiContent = await generateCourseContent(brief);
+    console.log('AI Content generated:', aiContent); // Debug log
+
     const generatedData: PromptData = {
-      resourceType: "Course",
-      resourceName: `${mainTopic} Mastery`,
-      painPoint: `Struggling to succeed with ${mainTopic} in the ${niche} industry`,
-      quickWin: `Master ${mainTopic} in 30 days`,
-      frustrationMethod: "Outdated and ineffective methods",
-      timeFrame: "30 days",
-      modules: [
-        `Module 1: ${mainTopic} Foundations`,
-        `Module 2: Advanced ${niche} Strategies`,
-        "Module 3: Implementation & Success",
-        "Module 4: Scaling Your Results"
-      ],
-      bonusName: "Quick Start Implementation Guide",
-      bonusValue: 997,
-      targetAudience: audience,
+      ...aiContent,
+      industryNiche: brief.niche,
+      productPrice: "997",
+      supportEmail: "support@example.com",
       colorTheme: {
         primary: "#6366F1",
         secondary: "#8B5CF6",
@@ -53,8 +54,10 @@ export async function POST(request: Request) {
     return NextResponse.json(generatedData);
   } catch (error) {
     console.error('Generate content error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to generate content';
+    console.error('Error details:', errorMessage);
     return NextResponse.json(
-      { error: 'Failed to generate content' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

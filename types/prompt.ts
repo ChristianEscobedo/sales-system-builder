@@ -20,20 +20,26 @@ export interface PromptData {
   bonusName: string;
   bonusValue: number;
   targetAudience: string;
+  expertName: string;
+  expertCredentials: string;
+  transformation: string;
   industryNiche: string;
-  productPrice: number; // Changed from string to number
+  productPrice: string;
   supportEmail: string;
-  colorTheme: ColorTheme; // Made required instead of optional
-  // AI-generated fields
-  painPoints: string[];
-  industryStats: string[];
-  storyHook: string;
-  desiredOutcome: string;
-  trustElements: string[];
-  socialProof: {
-    downloads: number;
-    successStories: string[];
-    industryRecognition: string[];
+  colorTheme: {
+    primary: string;
+    secondary: string;
+    background: string;
+    text: string;
+    hoverText: string;
+    selectedText: string;
+    accent: string;
+    gradients: string[];
+  };
+  style: {
+    font: string;
+    layout: string;
+    spacing: string;
   };
 }
 

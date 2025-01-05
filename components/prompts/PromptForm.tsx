@@ -22,11 +22,32 @@ interface PromptFormProps {
 }
 
 export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false, onSave }: PromptFormProps) {
+  // Ensure data has default values
+  const formData = {
+    resourceType: data?.resourceType || "",
+    resourceName: data?.resourceName || "",
+    painPoint: data?.painPoint || "",
+    quickWin: data?.quickWin || "",
+    frustrationMethod: data?.frustrationMethod || "",
+    timeFrame: data?.timeFrame || "",
+    modules: data?.modules || [],
+    bonusName: data?.bonusName || "",
+    bonusValue: data?.bonusValue || 0,
+    targetAudience: data?.targetAudience || "",
+    expertName: data?.expertName || "",
+    expertCredentials: data?.expertCredentials || "",
+    transformation: data?.transformation || "",
+    industryNiche: data?.industryNiche || "",
+    productPrice: data?.productPrice || "",
+    supportEmail: data?.supportEmail || "",
+    ...data
+  };
+
   const updateField = (field: keyof PromptData, value: any) => {
     onSubmit({
-      ...data,
+      ...formData,
       [field]: field === "colorTheme" && typeof value === "object"
-        ? { ...data.colorTheme, ...value }
+        ? { ...formData.colorTheme, ...value }
         : value
     });
   };
@@ -63,7 +84,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Resource Type</Label>
             <Input
-              value={data.resourceType}
+              value={formData.resourceType}
               onChange={(e) => updateField("resourceType", e.target.value)}
               placeholder="e.g., Course, Masterclass, Workshop"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -72,7 +93,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Resource Name</Label>
             <Input
-              value={data.resourceName}
+              value={formData.resourceName}
               onChange={(e) => updateField("resourceName", e.target.value)}
               placeholder="e.g., AI Marketing Mastery"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -81,7 +102,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Target Audience</Label>
             <Input
-              value={data.targetAudience}
+              value={formData.targetAudience}
               onChange={(e) => updateField("targetAudience", e.target.value)}
               placeholder="e.g., Digital Marketers, Small Business Owners"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -90,7 +111,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Industry/Niche</Label>
             <Input
-              value={data.industryNiche}
+              value={formData.industryNiche}
               onChange={(e) => updateField("industryNiche", e.target.value)}
               placeholder="e.g., Digital Marketing, E-commerce"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -100,7 +121,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
             <Label className="text-white">Product Price</Label>
             <Input
               type="number"
-              value={data.productPrice}
+              value={formData.productPrice}
               onChange={(e) => updateField("productPrice", parseFloat(e.target.value))}
               placeholder="e.g., 97"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -110,7 +131,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
             <Label className="text-white">Support Email</Label>
             <Input
               type="email"
-              value={data.supportEmail}
+              value={formData.supportEmail}
               onChange={(e) => updateField("supportEmail", e.target.value)}
               placeholder="e.g., support@example.com"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -122,7 +143,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Pain Point</Label>
             <Input
-              value={data.painPoint}
+              value={formData.painPoint}
               onChange={(e) => updateField("painPoint", e.target.value)}
               placeholder="e.g., Low Website Conversion Rates"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -131,7 +152,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Quick Win</Label>
             <Input
-              value={data.quickWin}
+              value={formData.quickWin}
               onChange={(e) => updateField("quickWin", e.target.value)}
               placeholder="e.g., Double Your Conversion Rate"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -140,7 +161,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Frustration Method</Label>
             <Input
-              value={data.frustrationMethod}
+              value={formData.frustrationMethod}
               onChange={(e) => updateField("frustrationMethod", e.target.value)}
               placeholder="e.g., Expensive Paid Ads"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -149,7 +170,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Time Frame</Label>
             <Input
-              value={data.timeFrame}
+              value={formData.timeFrame}
               onChange={(e) => updateField("timeFrame", e.target.value)}
               placeholder="e.g., 30 days, 60 minutes"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -158,7 +179,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Modules (One per line)</Label>
             <Textarea
-              value={(data.modules || []).join("\n")}
+              value={(formData.modules || []).join("\n")}
               onChange={(e) => updateField("modules", e.target.value.split("\n").filter(Boolean))}
               placeholder="Module 1: Getting Started&#10;Module 2: Core Strategies&#10;Module 3: Implementation"
               className="bg-white/10 border-purple-500/30 text-white min-h-[120px]"
@@ -167,7 +188,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white">Bonus Name</Label>
             <Input
-              value={data.bonusName}
+              value={formData.bonusName}
               onChange={(e) => updateField("bonusName", e.target.value)}
               placeholder="e.g., Quick Start Implementation Guide"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -177,7 +198,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
             <Label className="text-white">Bonus Value</Label>
             <Input
               type="number"
-              value={data.bonusValue}
+              value={formData.bonusValue}
               onChange={(e) => updateField("bonusValue", parseInt(e.target.value))}
               placeholder="e.g., 97"
               className="bg-white/10 border-purple-500/30 text-white"
@@ -189,7 +210,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white mb-4 block">Style Preset</Label>
             <StyleSelector
-              value={data.stylePreset}
+              value={formData.stylePreset}
               onChange={(preset) => updateField("stylePreset", preset)}
             />
           </div>
@@ -198,57 +219,57 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
             <Label className="text-white text-lg">Custom Colors</Label>
             <ColorPicker
               label="Primary Color"
-              value={data.colorTheme?.primary || "#6366F1"}
+              value={formData.colorTheme?.primary || "#6366F1"}
               onChange={(value) => updateField("colorTheme", { 
-                ...data.colorTheme,
+                ...formData.colorTheme,
                 primary: value 
               })}
             />
             <ColorPicker
               label="Secondary Color"
-              value={data.colorTheme?.secondary || "#8B5CF6"}
+              value={formData.colorTheme?.secondary || "#8B5CF6"}
               onChange={(value) => updateField("colorTheme", {
-                ...data.colorTheme,
+                ...formData.colorTheme,
                 secondary: value
               })}
             />
             <ColorPicker
               label="Background Color"
-              value={data.colorTheme?.background || "#000000"}
+              value={formData.colorTheme?.background || "#000000"}
               onChange={(value) => updateField("colorTheme", {
-                ...data.colorTheme,
+                ...formData.colorTheme,
                 background: value
               })}
             />
             <ColorPicker
               label="Text Color"
-              value={data.colorTheme?.text || "#FFFFFF"}
+              value={formData.colorTheme?.text || "#FFFFFF"}
               onChange={(value) => updateField("colorTheme", {
-                ...data.colorTheme,
+                ...formData.colorTheme,
                 text: value
               })}
             />
             <ColorPicker
               label="Hover Text Color"
-              value={data.colorTheme?.hoverText || "#F3F4F6"}
+              value={formData.colorTheme?.hoverText || "#F3F4F6"}
               onChange={(value) => updateField("colorTheme", {
-                ...data.colorTheme,
+                ...formData.colorTheme,
                 hoverText: value
               })}
             />
             <ColorPicker
               label="Selected Text Color"
-              value={data.colorTheme?.selectedText || "#4F46E5"}
+              value={formData.colorTheme?.selectedText || "#4F46E5"}
               onChange={(value) => updateField("colorTheme", {
-                ...data.colorTheme,
+                ...formData.colorTheme,
                 selectedText: value
               })}
             />
             <ColorPicker
               label="Accent Color"
-              value={data.colorTheme?.accent || "#4F46E5"}
+              value={formData.colorTheme?.accent || "#4F46E5"}
               onChange={(value) => updateField("colorTheme", {
-                ...data.colorTheme,
+                ...formData.colorTheme,
                 accent: value
               })}
             />

@@ -8,9 +8,39 @@ import type { PromptData } from "@/types/prompt";
 import { createDefaultPromptData, defaultPromptParams } from "@/lib/defaults/prompt";
 
 export default function PublicPromptsPage() {
-  const [promptData, setPromptData] = useState<PromptData>(() => 
-    createDefaultPromptData(defaultPromptParams)
-  );
+  const [promptData, setPromptData] = useState<PromptData>(() => ({
+    resourceType: "",
+    resourceName: "",
+    painPoint: "",
+    quickWin: "",
+    frustrationMethod: "",
+    timeFrame: "",
+    modules: [],
+    bonusName: "",
+    bonusValue: 0,
+    targetAudience: "",
+    expertName: "",
+    expertCredentials: "",
+    transformation: "",
+    industryNiche: "",
+    productPrice: "",
+    supportEmail: "",
+    colorTheme: {
+      primary: "#6366F1",
+      secondary: "#8B5CF6",
+      background: "#000000",
+      text: "#FFFFFF",
+      hoverText: "#F3F4F6",
+      selectedText: "#4F46E5",
+      accent: "#4F46E5",
+      gradients: ["from-purple-600 to-blue-600", "from-purple-500 to-blue-500"]
+    },
+    style: {
+      font: "inter",
+      layout: "modern",
+      spacing: "comfortable"
+    }
+  }));
   const [isGenerating, setIsGenerating] = useState(false);
 
   const handleDataUpdate = (newData: PromptData) => {
