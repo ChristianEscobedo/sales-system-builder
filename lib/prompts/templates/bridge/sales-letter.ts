@@ -1,5 +1,6 @@
 export const BRIDGE_SALES_TEMPLATE = `
-This is Part 2.2 of the Complete Optin - Sales System - Course Delivery Sequence. Keep The Same Style From Previous Prompts. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section 
+This is Part 2.2 of the Complete - Sales System - One Time Offers Sales Page Part2. Keep The Same Style From Previous Prompts. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section 
+Follow the Instructions below to create the page if you do not complete the entire output let me left off so I can guide you to fill in the rest
 
 [PAGE SECTION 2 - Sales Letter & Pricing]
 
@@ -90,26 +91,21 @@ FAQ #5: "What kind of support do I get?"
 Answer: "You receive [SUPPORT_DURATION] of direct support through our [SUPPORT_TYPE], plus lifetime access to [COMMUNITY_TYPE] where you can get your questions answered 24/7."
 
 [DYNAMIC FIELDS]
-PRODUCT_NAME: "Agency Scaling Blueprint"
-REGULAR_PURCHASE: "coffee"
-TOTAL_VALUE: "$4,488"
-SPECIAL_PRICE: "$97"
-VALUE_1: "1,997"
-VALUE_2: "997"
-VALUE_3: "997"
-BONUS_VALUE_1: "997"
-BONUS_VALUE_2: "497"
-BONUS_VALUE_3: "997"
-BONUS_COUNT: "3"
-CLIENT_TYPE: "agency owners"
-MAIN_BENEFIT: "predictable scaling"
-ACHIEVEMENT_PATH: "route to 7-figure agency success"
-IMPLEMENTATION_TIME: "7 days"
-FULL_TIME: "30 days"
-SUPPORT_DURATION: "60 days"
-SUPPORT_TYPE: "private coaching community"
-COMMUNITY_TYPE: "VIP Facebook group"
-APPROACH_TYPE: "proven, straightforward"
-UNIQUE_BENEFIT: "rapid scaling and automation"
-BASE_BENEFIT: "solid foundation"
-ADVANCED_BENEFIT: "advanced scaling strategies"`;
+PRODUCT_NAME: [PRODUCT_NAME]
+REGULAR_PURCHASE: [REGULAR_PURCHASE]
+TOTAL_VALUE: [TOTAL_VALUE]
+SPECIAL_PRICE: [SPECIAL_PRICE]
+VALUE_1: [VALUE_1]
+VALUE_2: [VALUE_2]
+VALUE_3: [VALUE_3]
+BONUS_VALUE_1: [BONUS_VALUE_1]
+BONUS_VALUE_2: [BONUS_VALUE_2]
+BONUS_VALUE_3: [BONUS_VALUE_3]
+BONUS_COUNT: [BONUS_COUNT]
+CLIENT_TYPE: [CLIENT_TYPE]
+MAIN_BENEFIT: [MAIN_BENEFIT]
+APPROACH_TYPE: [APPROACH_TYPE]
+UNIQUE_BENEFIT: [UNIQUE_BENEFIT]
+BASE_BENEFIT: [BASE_BENEFIT]
+ADVANCED_BENEFIT: [ADVANCED_BENEFIT]
+`;

@@ -51,16 +51,16 @@ export function generateEnhancedPrompt(data: PromptData): string {
 
 export function generateBridgeHeaderPrompt(data: PromptData): string {
   const replacements = new Map([
-    ["[BIG_RESULT]", "Scale Your Business to 7-Figures"],
-    ["[DESIRABLE_BENEFIT]", "Creates Predictable Revenue"],
-    ["[MAJOR_PROBLEM]", "Working 80-Hour Weeks"],
+    ["[BIG_RESULT]", data.transformation || "Scale Your Business"],
+    ["[DESIRABLE_BENEFIT]", data.quickWin || "Achieve Better Results"], 
+    ["[MAJOR_PROBLEM]", data.painPoint || "Current Challenges"],
     ["[PRODUCT_NAME]", data.resourceName],
-    ["[ACHIEVING_SUCCESS]", "building a scalable agency"],
-    ["[TACTIC]", "AI-Powered System"],
-    ["[ACHIEVE_RESULT]", "10x Your Client Results"],
-    ["[EASIER_FASTER_BETTER]", "in Half the Time"],
-    ["[INITIAL_BENEFIT]", "foundation for growth"],
-    ["[MAIN_PRODUCT]", "Agency Launch System"]
+    ["[ACHIEVING_SUCCESS]", data.transformation || "reaching your goals"],
+    ["[TACTIC]", data.resourceType || "Proven System"],
+    ["[ACHIEVE_RESULT]", data.quickWin || "Improve Your Results"],
+    ["[EASIER_FASTER_BETTER]", data.timeFrame || "more efficiently"],
+    ["[INITIAL_BENEFIT]", data.quickWin || "initial improvements"],
+    ["[MAIN_PRODUCT]", data.resourceName]
   ]);
 
   return replaceTemplateValues(BRIDGE_HEADER_TEMPLATE, replacements);
@@ -69,18 +69,18 @@ export function generateBridgeHeaderPrompt(data: PromptData): string {
 export function generateBridgeSalesPrompt(data: PromptData): string {
   const replacements = new Map([
     ["[PRODUCT_NAME]", data.resourceName],
-    ["[REGULAR_PURCHASE]", "coffee"],
-    ["[TOTAL_VALUE]", "$4,488"],
-    ["[SPECIAL_PRICE]", "$97"],
-    ["[VALUE_1]", "1,997"],
-    ["[VALUE_2]", "997"],
-    ["[VALUE_3]", "997"],
-    ["[BONUS_VALUE_1]", "997"],
-    ["[BONUS_VALUE_2]", "497"],
-    ["[BONUS_VALUE_3]", "997"],
-    ["[BONUS_COUNT]", "3"],
-    ["[CLIENT_TYPE]", "agency owners"],
-    ["[MAIN_BENEFIT]", "predictable scaling"]
+    ["[REGULAR_PURCHASE]", "everyday purchase"],
+    ["[TOTAL_VALUE]", `$${data.bonusValue * 3 || "997"}+`],
+    ["[SPECIAL_PRICE]", data.productPrice || "$97"],
+    ["[VALUE_1]", data.bonusValue?.toString() || "997"],
+    ["[VALUE_2]", data.bonusValue?.toString() || "997"], 
+    ["[VALUE_3]", data.bonusValue?.toString() || "997"],
+    ["[BONUS_VALUE_1]", data.bonusValue?.toString() || "997"],
+    ["[BONUS_VALUE_2]", data.bonusValue?.toString() || "497"],
+    ["[BONUS_VALUE_3]", data.bonusValue?.toString() || "997"],
+    ["[BONUS_COUNT]", data.modules?.length?.toString() || "3"],
+    ["[CLIENT_TYPE]", data.targetAudience || "professionals"],
+    ["[MAIN_BENEFIT]", data.quickWin || "improved results"]
   ]);
 
   return replaceTemplateValues(BRIDGE_SALES_TEMPLATE, replacements);
@@ -89,17 +89,17 @@ export function generateBridgeSalesPrompt(data: PromptData): string {
 export function generateThankYouPrompt(data: PromptData): string {
   const replacements = new Map([
     ["[PRODUCT_NAME]", data.resourceName],
-    ["[PRODUCT_PRICE]", "$97"],
+    ["[PRODUCT_PRICE]", data.productPrice || "$97"],
     ["[ORDER_ID]", `#ORD-${Date.now()}`],
     ["[ORDER_DATE]", new Date().toLocaleDateString()],
-    ["[DESIRED_OUTCOME]", "building a 7-figure agency"],
-    ["[SUPPORT_EMAIL]", "support@example.com"],
-    ["[COMMUNITY_NAME]", "Agency Accelerator Community"],
-    ["[MEMBER_COUNT]", "5,000"],
-    ["[TARGET_AUDIENCE]", "agency owners"],
-    ["[SHARED_GOAL]", "scale their business to 7-figures"],
-    ["[RESOURCE_NAME]", "Agency Growth Newsletter"],
-    ["[RESOURCE_DESCRIPTION]", "Weekly strategies, case studies, and actionable tips to grow your agency faster"]
+    ["[DESIRED_OUTCOME]", data.transformation || "achieving your goals"],
+    ["[SUPPORT_EMAIL]", data.supportEmail || "support@example.com"],
+    ["[COMMUNITY_NAME]", `${data.industryNiche || "Professional"} Community`],
+    ["[MEMBER_COUNT]", "1,000+"],
+    ["[TARGET_AUDIENCE]", data.targetAudience || "professionals"],
+    ["[SHARED_GOAL]", data.transformation || "reach their goals"],
+    ["[RESOURCE_NAME]", `${data.industryNiche || "Professional"} Newsletter`],
+    ["[RESOURCE_DESCRIPTION]", `Weekly insights and strategies for ${data.targetAudience || "professionals"} to ${data.quickWin || "improve results"}`]
   ]);
 
   return replaceTemplateValues(THANK_YOU_TEMPLATE, replacements);

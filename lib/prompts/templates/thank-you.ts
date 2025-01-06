@@ -1,5 +1,6 @@
 export const THANK_YOU_TEMPLATE = `
-This is Part 3 of the Complete Optin - Sales System - Course Delivery Sequence. Keep The Same Style From Previous Prompts. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section 
+This is Part 3 - Sales System - Thank you page delivery sequence. Keep The Same Style From Previous Prompts. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section 
+Follow the Instructions below to create the page if you do not complete the entire output let me left off so I can guide you to fill in the rest
 
 [PAGE SECTION 1 - Confirmation Header]
 
@@ -49,26 +50,26 @@ Button: "YES! I want to join [COMMUNITY_NAME]"
 Button: "Subscribe to [RESOURCE_NAME]"
 
 [DESIGN SYSTEM]
-Style: Ultra-modern, premium
+Style: [STYLE]
 Colors:
-- Primary: #6366F1
-- Secondary: #8B5CF6
-- Success: #22C55E
-- Background: Black with gradient overlay
-- Text: White with premium contrast
-Typography: Inter font family
-Components: Modern shadcn/ui elements
+- Primary: [PRIMARY_COLOR]
+- Secondary: [SECONDARY_COLOR]
+- Success: [SUCCESS_COLOR]
+- Background: [BACKGROUND_COLOR]
+- Text: [TEXT_COLOR]
+Typography: [TYPOGRAPHY]
+Components: [COMPONENTS]
 
 [DYNAMIC FIELDS]
-[PRODUCT_NAME]: "Agency Scaling Blueprint"
-PRODUCT_PRICE: "$97"
-ORDER_ID: "#ORD-[TIMESTAMP]"
-ORDER_DATE: "[CURRENT_DATE]"
-DESIRED_OUTCOME: "building a 7-figure agency"
-SUPPORT_EMAIL: "support@example.com"
-COMMUNITY_NAME: "Agency Accelerator Community"
-MEMBER_COUNT: "5,000"
-TARGET_AUDIENCE: "agency owners"
-SHARED_GOAL: "scale their business to 7-figures"
-RESOURCE_NAME: "Agency Growth Newsletter"
-RESOURCE_DESCRIPTION: "Weekly strategies, case studies, and actionable tips to grow your agency faster"`;
+PRODUCT_NAME: [PRODUCT_NAME]
+PRODUCT_PRICE: [PRODUCT_PRICE]
+ORDER_ID: [ORDER_ID]
+ORDER_DATE: [ORDER_DATE]
+DESIRED_OUTCOME: [DESIRED_OUTCOME]
+SUPPORT_EMAIL: [SUPPORT_EMAIL]
+COMMUNITY_NAME: [COMMUNITY_NAME]
+MEMBER_COUNT: [MEMBER_COUNT]
+TARGET_AUDIENCE: [TARGET_AUDIENCE]
+SHARED_GOAL: [SHARED_GOAL]
+RESOURCE_NAME: [RESOURCE_NAME]
+RESOURCE_DESCRIPTION: [RESOURCE_DESCRIPTION]`;

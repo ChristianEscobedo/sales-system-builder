@@ -4,7 +4,7 @@ export const LANDING_PAGE_TEMPLATE = `This is Part 1 of a Complete Sales System 
 
 [SYSTEM INSTRUCTIONS]
 Create a complete sales system using an ultra-modern design approach with background [BACKGROUND_COLOR] and subtle gradients from [PRIMARY_COLOR] to [SECONDARY_COLOR]. Use a text color of [TEXT_COLOR] and [HOVER_COLOR] and [SELECTED_COLOR] and [ACCENT_COLOR]
-Build using Next.js 15+ app router with Shadcn UI components. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section
+Build using Next.js 15+ app router with Shadcn UI components. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section. Follow the Instructions below to create the page if you do not complete the entire output let me left off so I can guide you to fill in the rest
 
 [TECHSTACK]
 - Next.js 15+ with App Router
@@ -29,13 +29,13 @@ CORE PROMISE:
 
 ✅ How to create [MICRO_RESULT] in [TIME_FRAME]
 
-✅ Easily [NICHE_TOPIC] that builds trust and authority amplifying not [COMMON_OBSTACLE]...
+✅ Easily [DESIRED_OUTCOME] without the typical [COMMON_OBSTACLE]...
 
 ✅ A new way to [ACHIEVE_QUICK_WIN] using our proprietary strategy '[UNIQUE_MECHANISM]'...
 
-✅ How we drastically expand our reach with '[SYSTEM_NAME]'
+✅ How we drastically decrease [UNWANTED_TASK] with'[SYSTEM_NAME]'
 
-✅ BONUS - Get the [BONUS_NAME] just for showing up... (Value $[BONUS_VALUE])
+✅ BONUS - Get the [BONUS_NAME] inside [RESOURCE_TYPE]... (Value $[BONUS_VALUE])
 
 KEY BENEFITS PREVIEW:
 - Discover the exact blueprint for [SOLVE_PAIN_POINT]
@@ -90,6 +90,7 @@ PAIN_POINTS: [PAIN_POINTS]
 - Member Access
 - Mini Course
 - Login Page
+- Alternative Copywriting DOC alt-copy.md file
 - Resources Library`;
 
 export const defaultPromptValues = {
