@@ -177,8 +177,8 @@ const VIDEOS: Video[] = [
         },
         {
           name: "BOLT DFY PACKAGE",
-          description: "Coming soon...",
-          link: "#"
+          description: "Complete done-for-you package with templates and resources",
+          link: "https://stackblitz.com/edit/sb1-zqxkc1zz?file=.gitignore"
         }
       ],
       features: [
@@ -246,7 +246,7 @@ const VIDEOS: Video[] = [
     }
   },
   {
-    id: "yk7ah8GtDiM",
+    id: "jww6ezEoOQQ",
     title: "Video 3. Over The Shoulder Sales System Build with Bolt",
     content: {
       title: "Over The Shoulder Sales System Build with Bolt",
@@ -256,93 +256,191 @@ const VIDEOS: Video[] = [
         overview: [
           "Live demonstration of building a complete sales system using Bolt",
           "Real-time problem-solving and implementation strategies",
-          "Practical tips and tricks for efficient system building"
+          "Step-by-step guide to creating your own sales system",
+          "Access project files: https://stackblitz.com/edit/sb1-zqxkc1zz?file=.gitignore"
         ]
       },
       keyObjectives: [
-        "Watch a complete sales system being built from scratch",
-        "Learn practical implementation techniques and best practices",
-        "Understand common challenges and their solutions"
+        "Learn how to build a complete sales system from scratch",
+        "Master the practical implementation of Bolt's features",
+        "Understand the entire system building workflow"
       ],
       tools: [
         {
+          name: "Project Files",
+          description: "Complete source code and project files for the sales system build",
+          link: "https://stackblitz.com/edit/sb1-zqxkc1zz?file=.gitignore"
+        },
+        {
           name: "Bolt.new",
-          description: "Primary development platform for the live build demonstration",
+          description: "Primary development platform for building sales systems",
           link: "http://bolt.new"
         },
         {
-          name: "Sales System Templates",
-          description: "Pre-built templates used in the demonstration",
-          link: "#"
+          name: "V0",
+          description: "AI-powered development assistant",
+          link: "https://v0.dev"
         },
         {
-          name: "Component Library",
-          description: "Collection of components used during the build",
-          link: "https://21st.dev/"
+          name: "Sales System Templates",
+          description: "Ready-to-use templates for faster development",
+          link: "https://learn.masss.ai/communities/groups/micro-saas-systems/home?invite=677bd299e40bf7ce408c0744"
         }
       ],
       features: [
         {
-          title: "Live Build Process",
-          description: "Step-by-step demonstration of building a complete sales system"
+          title: "Complete System Build",
+          description: "Watch the entire process of building a sales system from start to finish"
         },
         {
-          title: "Real-time Problem Solving",
-          description: "Watch how to handle common challenges during the build process"
-        },
-        {
-          title: "Best Practices",
-          description: "Learn optimal approaches for system construction and optimization"
+          title: "Real-world Application",
+          description: "See how to apply the concepts in practical scenarios"
         },
         {
           title: "Implementation Tips",
-          description: "Practical advice for smooth and efficient system building"
+          description: "Learn valuable shortcuts and best practices"
         }
       ],
       process: {
         title: "Build Process Overview",
         steps: [
           {
-            name: "Initial Setup",
+            name: "System Setup",
             details: [
-              "Setting up the Bolt environment",
-              "Configuring initial project settings",
-              "Preparing necessary components and resources"
+              "Initial configuration and setup",
+              "Component organization",
+              "Template customization"
             ]
           },
           {
-            name: "System Construction",
+            name: "Feature Implementation",
             details: [
-              "Building the core system components",
-              "Implementing key functionalities",
-              "Integrating necessary features and modules"
+              "Building core functionalities",
+              "Integrating key components",
+              "Testing and validation"
             ]
           },
           {
-            name: "Testing and Optimization",
+            name: "Optimization",
             details: [
-              "Testing the system functionality",
-              "Optimizing performance and user experience",
-              "Final adjustments and improvements"
+              "Performance improvements",
+              "User experience enhancements",
+              "Final system review"
             ]
           }
         ]
       },
       community: {
-        description: "Join our community to access more build tutorials and resources:",
+        description: "Join our community for more build tutorials and resources:",
         benefits: [
-          "Access to additional build tutorials and guides",
-          "Community support for your own builds",
-          "Regular updates on new features and techniques"
+          "Access to additional tutorials and guides",
+          "Community support for your builds",
+          "Regular updates on new features"
         ],
-        joinLink: "https://learn.masss.ai/communities/groups/micro-saas-systems/home?invite=677b115df5228de351fdde4b"
+        joinLink: "https://learn.masss.ai/communities/groups/micro-saas-systems/home?invite=677bd299e40bf7ce408c0744"
       },
       nextSteps: [
-        "Follow along with the build process in your own Bolt environment",
-        "Join the community to share your progress and get support",
-        "Apply the learned techniques to your own projects"
+        "Follow along with the build process",
+        "Join the community for support",
+        "Start building your own systems"
       ],
       conclusion: "This practical demonstration shows you exactly how to build a professional sales system using Bolt, giving you the confidence to create your own systems efficiently and effectively."
+    }
+  },
+  {
+    id: "SHm9WH1BQ00",
+    title: "Video 4. Advanced Sales System Features",
+    content: {
+      title: "Advanced Sales System Features and Implementation",
+      purpose: "Learn advanced features and implementation techniques for building professional sales systems, including customization options and optimization strategies.",
+      introduction: {
+        presenter: "Christian",
+        overview: [
+          "Deep dive into advanced sales system features",
+          "Custom implementation techniques for professional results",
+          "Optimization strategies for better conversion"
+        ]
+      },
+      keyObjectives: [
+        "Master advanced sales system features",
+        "Learn professional implementation techniques",
+        "Understand optimization and customization options"
+      ],
+      tools: [
+        {
+          name: "Bolt.new",
+          description: "Advanced features and customization options",
+          link: "http://bolt.new"
+        },
+        {
+          name: "Sales System Templates",
+          description: "Professional templates and components",
+          link: "https://learn.masss.ai/communities/groups/micro-saas-systems/home?invite=677bd299e40bf7ce408c0744"
+        },
+        {
+          name: "Integration Tools",
+          description: "Tools for connecting your sales system components",
+          link: "https://learn.masss.ai/communities/groups/micro-saas-systems/home?invite=677bd299e40bf7ce408c0744"
+        }
+      ],
+      features: [
+        {
+          title: "Advanced Customization",
+          description: "Deep dive into customizing your sales system for optimal results"
+        },
+        {
+          title: "Professional Integration",
+          description: "Learn how to integrate advanced features seamlessly"
+        },
+        {
+          title: "Optimization Techniques",
+          description: "Master strategies for optimizing your sales system"
+        }
+      ],
+      process: {
+        title: "Advanced Implementation Process",
+        steps: [
+          {
+            name: "Advanced Setup",
+            details: [
+              "Configure advanced features and settings",
+              "Set up professional integrations",
+              "Implement custom functionality"
+            ]
+          },
+          {
+            name: "System Integration",
+            details: [
+              "Connect all system components",
+              "Ensure seamless data flow",
+              "Test advanced features"
+            ]
+          },
+          {
+            name: "Professional Optimization",
+            details: [
+              "Optimize for conversion",
+              "Enhance user experience",
+              "Implement tracking and analytics"
+            ]
+          }
+        ]
+      },
+      community: {
+        description: "Join our community for advanced tutorials and professional resources:",
+        benefits: [
+          "Access to advanced implementation guides",
+          "Professional support and feedback",
+          "Regular updates on new features and techniques"
+        ],
+        joinLink: "https://learn.masss.ai/communities/groups/micro-saas-systems/home?invite=677bd299e40bf7ce408c0744"
+      },
+      nextSteps: [
+        "Implement advanced features in your system",
+        "Optimize your sales funnel",
+        "Join the community for professional support"
+      ],
+      conclusion: "Master the advanced features and professional implementation techniques to create high-converting sales systems that deliver exceptional results."
     }
   }
 ];
@@ -371,7 +469,7 @@ export function VideoSection() {
           const video = VIDEOS.find(v => v.id === value);
           if (video) setCurrentVideo(video);
         }}>
-          <TabsList className="grid w-full grid-cols-3 mb-8 gap-4 p-1 bg-white/5 backdrop-blur-sm rounded-xl">
+          <TabsList className="grid w-full grid-cols-4 mb-8 gap-4 p-1 bg-white/5 backdrop-blur-sm rounded-xl">
             {VIDEOS.map((video) => (
               <TabsTrigger 
                 key={video.id} 

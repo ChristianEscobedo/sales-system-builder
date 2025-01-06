@@ -61,6 +61,20 @@ function Footerdemo() {
   return (
     <footer className="relative border-t bg-background text-foreground transition-colors duration-300">
       <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <a
+            href="https://learn.masss.ai/communities/groups/micro-saas-systems/home?invite=677bd299e40bf7ce408c0744"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-col items-center justify-center px-8 py-4 text-lg font-semibold text-white rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            <span className="text-xl">Get the Full System</span>
+            <span className="text-sm opacity-90 mt-1">
+              Get Email, Webinar, Upsell, Course Templates & More
+            </span>
+          </a>
+        </div>
+
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative">
             <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
