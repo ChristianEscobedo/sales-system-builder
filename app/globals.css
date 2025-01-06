@@ -79,3 +79,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes gradient {
+  0% { background-position: 0% center; }
+  100% { background-position: -200% center; }
+}
+
+.animate-gradient {
+  animation: gradient 4s linear infinite;
+}
+
+.bg-300\% {
+  background-size: 300% auto;
+}
