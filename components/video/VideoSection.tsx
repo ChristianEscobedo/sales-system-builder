@@ -244,6 +244,106 @@ const VIDEOS: Video[] = [
       ],
       conclusion: "The Sales Systems Builder offers a modern, customizable approach to creating high-quality sales systems and SaaS applications. Users are encouraged to explore community resources and tools for further growth."
     }
+  },
+  {
+    id: "yk7ah8GtDiM",
+    title: "Video 3. Over The Shoulder Sales System Build with Bolt",
+    content: {
+      title: "Over The Shoulder Sales System Build with Bolt",
+      purpose: "Watch a complete, step-by-step walkthrough of building a sales system using Bolt, with real-time explanations and practical implementation tips.",
+      introduction: {
+        presenter: "Christian",
+        overview: [
+          "Live demonstration of building a complete sales system using Bolt",
+          "Real-time problem-solving and implementation strategies",
+          "Practical tips and tricks for efficient system building"
+        ]
+      },
+      keyObjectives: [
+        "Watch a complete sales system being built from scratch",
+        "Learn practical implementation techniques and best practices",
+        "Understand common challenges and their solutions"
+      ],
+      tools: [
+        {
+          name: "Bolt.new",
+          description: "Primary development platform for the live build demonstration",
+          link: "http://bolt.new"
+        },
+        {
+          name: "Sales System Templates",
+          description: "Pre-built templates used in the demonstration",
+          link: "#"
+        },
+        {
+          name: "Component Library",
+          description: "Collection of components used during the build",
+          link: "https://21st.dev/"
+        }
+      ],
+      features: [
+        {
+          title: "Live Build Process",
+          description: "Step-by-step demonstration of building a complete sales system"
+        },
+        {
+          title: "Real-time Problem Solving",
+          description: "Watch how to handle common challenges during the build process"
+        },
+        {
+          title: "Best Practices",
+          description: "Learn optimal approaches for system construction and optimization"
+        },
+        {
+          title: "Implementation Tips",
+          description: "Practical advice for smooth and efficient system building"
+        }
+      ],
+      process: {
+        title: "Build Process Overview",
+        steps: [
+          {
+            name: "Initial Setup",
+            details: [
+              "Setting up the Bolt environment",
+              "Configuring initial project settings",
+              "Preparing necessary components and resources"
+            ]
+          },
+          {
+            name: "System Construction",
+            details: [
+              "Building the core system components",
+              "Implementing key functionalities",
+              "Integrating necessary features and modules"
+            ]
+          },
+          {
+            name: "Testing and Optimization",
+            details: [
+              "Testing the system functionality",
+              "Optimizing performance and user experience",
+              "Final adjustments and improvements"
+            ]
+          }
+        ]
+      },
+      community: {
+        description: "Join our community to access more build tutorials and resources:",
+        benefits: [
+          "Access to additional build tutorials and guides",
+          "Community support for your own builds",
+          "Regular updates on new features and techniques"
+        ],
+        joinLink: "https://learn.masss.ai/communities/groups/micro-saas-systems/home?invite=677b115df5228de351fdde4b"
+      },
+      nextSteps: [
+        "Follow along with the build process in your own Bolt environment",
+        "Join the community to share your progress and get support",
+        "Apply the learned techniques to your own projects"
+      ],
+      conclusion: "This practical demonstration shows you exactly how to build a professional sales system using Bolt, giving you the confidence to create your own systems efficiently and effectively."
+    }
   }
 ];
 
@@ -271,10 +371,22 @@ export function VideoSection() {
           const video = VIDEOS.find(v => v.id === value);
           if (video) setCurrentVideo(video);
         }}>
-          <TabsList className="grid w-full grid-cols-2 mb-8">
+          <TabsList className="grid w-full grid-cols-3 mb-8 gap-4 p-1 bg-white/5 backdrop-blur-sm rounded-xl">
             {VIDEOS.map((video) => (
-              <TabsTrigger key={video.id} value={video.id}>
-                {video.title}
+              <TabsTrigger 
+                key={video.id} 
+                value={video.id}
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-blue-600 
+                  data-[state=active]:text-white text-gray-400 rounded-lg
+                  text-xs sm:text-sm md:text-base px-3 py-3 
+                  whitespace-normal h-auto min-h-[50px] 
+                  flex items-center justify-center text-center
+                  transition-all duration-200
+                  hover:text-white hover:bg-white/5"
+              >
+                {video.title.includes('.') 
+                  ? `Video ${video.title.split('.')[0]}`
+                  : video.title}
               </TabsTrigger>
             ))}
           </TabsList>
