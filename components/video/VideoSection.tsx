@@ -450,6 +450,13 @@ export function VideoSection() {
 
   return (
     <div className="mb-12 space-y-8">
+      <div className="text-center max-w-3xl mx-auto">
+        <p className="text-xl md:text-2xl text-white/90 font-light">
+          Watch how to build complete sales systems with landing pages, bridge pages, 
+          and checkout flows in minutes using our proven templates
+        </p>
+      </div>
+
       <div className="aspect-video w-full max-w-4xl mx-auto">
         <iframe
           width="100%"
@@ -462,6 +469,13 @@ export function VideoSection() {
           allowFullScreen
           className="rounded-xl"
         />
+      </div>
+
+      <div className="text-center max-w-3xl mx-auto">
+        <p className="text-xl md:text-2xl text-white/90 font-light">
+          Follow along with our step-by-step tutorials and have your own 
+          professional sales system ready to launch in under an hour
+        </p>
       </div>
 
       <div className="max-w-4xl mx-auto">
