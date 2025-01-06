@@ -4,6 +4,7 @@ import { BRIDGE_SALES_TEMPLATE } from "./templates/bridge/sales-letter";
 import { THANK_YOU_TEMPLATE } from "./templates/thank-you";
 import { replaceTemplateValues } from "./utils/template";
 import type { PromptData } from "@/types/prompt";
+import { CHECKOUT_TEMPLATE } from './templates/checkout';
 
 export function generatePromptContent(data: PromptData): string {
   const template = `Create a ${data.resourceType} called "${data.resourceName}" for ${data.targetAudience} in the ${data.industryNiche} industry.
@@ -103,4 +104,28 @@ export function generateThankYouPrompt(data: PromptData): string {
   ]);
 
   return replaceTemplateValues(THANK_YOU_TEMPLATE, replacements);
+}
+
+export function generateCheckoutPrompt(data: PromptData): string {
+  const replacements = new Map([
+    ["[PRODUCT_NAME]", data.resourceName],
+    ["[GUARANTEE_DAYS]", "30"],
+    ["[GUARANTEE_DESCRIPTION]", "If you're not completely satisfied with your purchase, simply let us know within 30 days for a full refund."],
+    ["[SECURITY_MESSAGE]", "Your information is secured with bank-level encryption"],
+    ["[REGULAR_PRICE]", `$${Number(data.productPrice) * 2}`],
+    ["[TODAY_PRICE]", data.productPrice],
+    ["[SAVINGS_AMOUNT]", `$${Number(data.productPrice)}`],
+    ["[PRODUCT_1]", data.resourceName],
+    ["[PRODUCT_1_DESCRIPTION]", `Complete ${data.resourceType} system`],
+    ["[VALUE_1]", data.bonusValue?.toString() || "997"],
+    ["[BONUS_1]", `${data.bonusName || "Fast Action Bonus 1"}`],
+    ["[BONUS_1_DESCRIPTION]", "Exclusive bonus content and resources"],
+    ["[BONUS_VALUE_1]", data.bonusValue?.toString() || "497"],
+    ["[BONUS_2]", "Implementation Guide"],
+    ["[BONUS_2_DESCRIPTION]", "Step-by-step implementation blueprint"],
+    ["[BONUS_VALUE_2]", (data.bonusValue ? data.bonusValue / 2 : 297).toString()],
+    ["[TOTAL_VALUE]", `$${data.bonusValue ? data.bonusValue * 3 : 1997}`],
+  ]);
+
+  return replaceTemplateValues(CHECKOUT_TEMPLATE, replacements);
 }

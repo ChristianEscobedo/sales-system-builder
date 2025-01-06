@@ -1,0 +1,72 @@
+export const CHECKOUT_TEMPLATE = `
+[PART 4: CHECKOUT PAGE]
+
+[SYSTEM INSTRUCTIONS]
+Create a high-converting checkout page that maintains the same design style as previous pages. Use a clean, trustworthy layout that emphasizes security and value.
+
+[PAGE HEADER]
+"Complete Your Order
+You're just one step away from accessing [PRODUCT_NAME]"
+
+[FORM SECTION]
+Contact Information:
+- First Name
+- Last Name
+- Email Address
+
+Payment Information:
+- Card Number (1234 5678 9012 3456)
+- Expiry Date (MM/YY)
+- CVV (123)
+
+[TRUST INDICATORS]
+Security Badges:
+- 256-bit SSL
+- PCI Compliant
+- Norton Secured
+[SECURITY_MESSAGE]
+
+[GUARANTEE SECTION]
+[GUARANTEE_DAYS]-Day Money Back Guarantee
+[GUARANTEE_DESCRIPTION]
+
+[ORDER SUMMARY]
+Regular Price: [REGULAR_PRICE]
+Today's Price: [TODAY_PRICE]
+Your Savings: [SAVINGS_AMOUNT]
+
+Products Included:
+1. [PRODUCT_1]
+   [PRODUCT_1_DESCRIPTION]
+   Value: [VALUE_1]
+
+2. [BONUS_1]
+   [BONUS_1_DESCRIPTION]
+   Value: [BONUS_VALUE_1]
+
+3. [BONUS_2]
+   [BONUS_2_DESCRIPTION]
+   Value: [BONUS_VALUE_2]
+
+Total Value: [TOTAL_VALUE]
+You Pay Only: [TODAY_PRICE]
+
+[DYNAMIC FIELDS]
+PRODUCT_NAME: [PRODUCT_NAME]
+GUARANTEE_DAYS: [GUARANTEE_DAYS]
+GUARANTEE_DESCRIPTION: [GUARANTEE_DESCRIPTION]
+SECURITY_MESSAGE: [SECURITY_MESSAGE]
+REGULAR_PRICE: [REGULAR_PRICE]
+TODAY_PRICE: [TODAY_PRICE]
+SAVINGS_AMOUNT: [SAVINGS_AMOUNT]
+PRODUCT_1: [PRODUCT_1]
+PRODUCT_1_DESCRIPTION: [PRODUCT_1_DESCRIPTION]
+VALUE_1: [VALUE_1]
+BONUS_1: [BONUS_1]
+BONUS_1_DESCRIPTION: [BONUS_1_DESCRIPTION]
+BONUS_VALUE_1: [BONUS_VALUE_1]
+BONUS_2: [BONUS_2]
+BONUS_2_DESCRIPTION: [BONUS_2_DESCRIPTION]
+BONUS_VALUE_2: [BONUS_VALUE_2]
+TOTAL_VALUE: [TOTAL_VALUE]
+`; 

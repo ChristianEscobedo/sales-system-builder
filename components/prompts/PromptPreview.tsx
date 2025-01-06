@@ -9,7 +9,8 @@ import {
   generateEnhancedPrompt, 
   generateBridgeHeaderPrompt,
   generateBridgeSalesPrompt,
-  generateThankYouPrompt 
+  generateThankYouPrompt,
+  generateCheckoutPrompt 
 } from "@/lib/prompts/generate-prompt";
 
 interface PromptPreviewProps {
@@ -25,7 +26,7 @@ export function PromptPreview({
   onExport,
   onSave 
 }: PromptPreviewProps) {
-  const [promptType, setPromptType] = useState<"landing" | "bridge-header" | "bridge-sales" | "thank-you">("landing");
+  const [promptType, setPromptType] = useState<"landing" | "bridge-header" | "bridge-sales" | "thank-you" | "checkout">("landing");
   const [currentPrompt, setCurrentPrompt] = useState<string>("");
 
   useEffect(() => {
@@ -44,6 +45,9 @@ export function PromptPreview({
         case "thank-you":
           generatedPrompt = generateThankYouPrompt(data);
           break;
+        case "checkout":
+          generatedPrompt = generateCheckoutPrompt(data);
+          break;
       }
       setCurrentPrompt(generatedPrompt);
     } catch (error) {
@@ -55,6 +59,29 @@ export function PromptPreview({
   const copyToClipboard = () => {
     navigator.clipboard.writeText(currentPrompt);
   };
+
+  const tabs = [
+    { value: "landing", label: "Landing Page" },
+    { value: "bridge-header", label: "Bridge Header" },
+    { value: "bridge-sales", label: "Bridge Sales" },
+    { value: "checkout", label: "Checkout" },
+    { value: "thank-you", label: "Thank You" },
+  ];
+
+  function getPromptContent(tab: string, data: PromptData) {
+    switch (tab) {
+      case "landing":
+        return generateEnhancedPrompt(data);
+      case "bridge-header":
+        return generateBridgeHeaderPrompt(data);
+      case "bridge-sales":
+        return generateBridgeSalesPrompt(data);
+      case "thank-you":
+        return generateThankYouPrompt(data);
+      case "checkout":
+        return generateCheckoutPrompt(data);
+    }
+  }
 
   return (
     <div className="space-y-8">
@@ -76,10 +103,11 @@ export function PromptPreview({
           className="mb-4"
           onValueChange={(value) => setPromptType(value as typeof promptType)}
         >
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="landing">Landing Page</TabsTrigger>
             <TabsTrigger value="bridge-header">Bridge Header</TabsTrigger>
             <TabsTrigger value="bridge-sales">Bridge Sales</TabsTrigger>
+            <TabsTrigger value="checkout">Checkout</TabsTrigger>
             <TabsTrigger value="thank-you">Thank You</TabsTrigger>
           </TabsList>
 
@@ -96,6 +124,12 @@ export function PromptPreview({
           </TabsContent>
 
           <TabsContent value="bridge-sales">
+            <pre className="whitespace-pre-wrap text-gray-300 font-mono text-sm bg-black/20 p-4 rounded-xl overflow-auto max-h-[600px]">
+              {currentPrompt}
+            </pre>
+          </TabsContent>
+
+          <TabsContent value="checkout">
             <pre className="whitespace-pre-wrap text-gray-300 font-mono text-sm bg-black/20 p-4 rounded-xl overflow-auto max-h-[600px]">
               {currentPrompt}
             </pre>
