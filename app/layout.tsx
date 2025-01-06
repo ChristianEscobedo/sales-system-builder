@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { Footer } from "@/components/ui/footer-section.demo";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +26,8 @@ export default function RootLayout({
             {children}
           </ProtectedRoute>
         </AuthProvider>
+        <Footer />
+        <Toaster />
       </body>
     </html>
   );
