@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost'],
-    unoptimized: true
+    unoptimized: true,
+    domains: ['localhost']
   },
   typescript: {
     ignoreBuildErrors: true
@@ -10,18 +10,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   },
-  async rewrites() {
-    return [
-      {
-        source: '/500',
-        destination: '/',
-      },
-      {
-        source: '/404',
-        destination: '/',
-      },
-    ]
-  }
+  experimental: {
+    optimizeCss: false,
+    forceSwcTransforms: true
+  },
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js']
 }
 
 module.exports = nextConfig
