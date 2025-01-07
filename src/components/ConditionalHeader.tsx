@@ -29,11 +29,11 @@ export function ConditionalHeader() {
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
             <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 text-transparent bg-clip-text bg-300% animate-gradient">
-              Build A Complete $1k - $8k
+              Build A Complete $1k - $8k Low Ticket to High Ticket
             </span>
             <br />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-500 to-fuchsia-400 text-transparent bg-clip-text bg-300% animate-gradient">
-              Sales System in 1 Hour or Less
+              Sales System in Record Time
             </span>
           </h1>
         </div>

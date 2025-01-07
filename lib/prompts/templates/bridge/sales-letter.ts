@@ -1,12 +1,12 @@
 export const BRIDGE_SALES_TEMPLATE = `
-This is Part 2.2 of the Complete - Sales System - One Time Offers Sales Page Part2. Keep The Same Style From Previous Prompts. for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section 
-Follow the Instructions below to create the page if you do not complete the entire output let me left off so I can guide you to fill in the rest
+This is Part 2.2 of the Complete Sales System - One Time Offers Sales Page Part 2. Keep the same style from previous prompts. For any [] shortcodes that are not provided, fill them in based on the information given and answers you find in the [Dynamic Fields] Section.
+Follow the instructions below to create the page. If you do not complete the entire output, let me know where you left off so I can guide you to fill in the rest.
 
 [PAGE SECTION 2 - Sales Letter & Pricing]
 
 1. PRICE INTRODUCTION
 "So how much is [PRODUCT_NAME]?
-Prepare to be surprised…
+Prepare to be surprised...
 How much do you spend a month on [REGULAR_PURCHASE]?
 Could you imagine getting everything you see on this page for an investment that is LESS than what you spend PER MONTH on [ITEM]?"
 

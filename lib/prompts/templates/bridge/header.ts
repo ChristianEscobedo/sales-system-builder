@@ -1,9 +1,9 @@
 export const BRIDGE_HEADER_TEMPLATE = `
-This is Part 2.1 of the Complete Optin - Sales System - Course Bridge with a ONE TIME OFFER. Keep The Same Style From Previous Prompts.
+This is Part 2.1 of the Complete Opt-in - Sales System - Course Bridge with a ONE TIME OFFER. Keep The Same Style From Previous Prompts.
 
 [SYSTEM INSTRUCTIONS]
-Create an ultra-modern one-time offer that complements our giveaway [LEAD_MAGNET] Avoid results that require inputs my audience isn’t likely to have easily on hand, such as analytics. Remember, all transformation copywriting should demonstrate quick and easy wins and loses or pain if the offer. this should be congruent with our optinpage and solve the next promblem like (Speeding up results etc...) this bridge page that creates urgency and excitement for the special offer. Maintain the premium design approach with gradient from #6366F1 to #8B5CF6.
- for any [] shortcodes that are not provided fill them in based on the information giving and answers you find in the [Dynamic Fields] Section. Follow the Instructions below to create the page if you do not complete the entire output let me left off so I can guide you to fill in the rest
+Create an ultra-modern one-time offer that complements our giveaway [LEAD_MAGNET]. Avoid results that require inputs my [TARGET AUDIENCE] isn't likely to have easily on hand, such as analytics. Remember, all transformation copywriting should demonstrate quick and easy wins and losses or pain if the offer. This should be congruent with our opt-in page and solve the next problem like (speeding up results etc.). This bridge page creates urgency and excitement for the special offer. Maintain the premium design approach with gradient from #6366F1 to #8B5CF6.
+For any [] shortcodes that are not provided, fill them in based on the information given and answers you find in the [Dynamic Fields] Section. Follow the instructions below to create the page. If you do not complete the entire output, let me know where you left off so I can guide you to fill in the rest.
 
 [PAGE SECTION 1 - Special Offer Header]
 
@@ -12,7 +12,7 @@ Text: "WAIT! GET THE BEST RESULTS ADD [ONE_TIME_OFFER_RESOURCE]"
 Subtext: "Only Available On This Page..."
 
 2. HERO SECTION
-Primary Headline: "HOW WOULD YOU LIKE [3_WORD_DESCRIPTION_TO_SPEED_UP_OR_SIMPLIFIY_PROCESS] FOR [OFFER_PROMISE] WITHOUT [MAJOR_PROBLEM]?"
+Primary Headline: "HOW WOULD YOU LIKE [3_WORD_DESCRIPTION_TO_SPEED_UP_OR_SIMPLIFY_PROCESS] FOR [OFFER_PROMISE] WITHOUT [MAJOR_PROBLEM]?"
 
 Supporting Copy:
 

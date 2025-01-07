@@ -81,14 +81,21 @@
 }
 
 @keyframes gradient {
-  0% { background-position: 0% center; }
-  100% { background-position: -200% center; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .animate-gradient {
-  animation: gradient 4s linear infinite;
+  animation: gradient 3s ease infinite;
 }
 
 .bg-300\% {
-  background-size: 300% auto;
+  background-size: 300% 300%;
 }
