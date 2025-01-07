@@ -18,14 +18,18 @@ export function Header({ title, subtitle, logo, navigation }: HeaderProps) {
       {/* Logo/Title Section */}
       <div className="flex items-center gap-4">
         {logo && (
-          <div className="relative h-8 w-auto">
+          <div className="relative w-[32px] h-[32px] flex items-center justify-center">
             <Image 
               src={logo}
               alt="Logo"
-              width={32}
-              height={32}
-              className="h-8 w-auto object-contain"
+              fill
+              sizes="32px"
+              className="object-contain"
               priority
+              style={{
+                maxWidth: '32px',
+                maxHeight: '32px'
+              }}
             />
           </div>
         )}

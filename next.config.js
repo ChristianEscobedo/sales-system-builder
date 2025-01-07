@@ -10,10 +10,24 @@ const nextConfig = {
     unoptimized: true
   },
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: false,
   },
   poweredByHeader: false,
   compress: true,
+  output: 'standalone',
+  async headers() {
+    return [
+      {
+        source: '/auth/callback',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, max-age=0',
+          },
+        ],
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig
