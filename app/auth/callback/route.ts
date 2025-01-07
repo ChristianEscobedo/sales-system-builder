@@ -8,12 +8,18 @@ import { NextResponse } from 'next/server'
 export async function GET(request: Request) {
   const cookieStore = cookies()
   const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
-  const { searchParams } = new URL(request.url)
+  const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
 
-  if (code) {
-    await supabase.auth.exchangeCodeForSession(code)
+  if (!code) {
+    return NextResponse.redirect(`${origin}/`)
   }
 
-  return NextResponse.redirect(new URL('/dashboard', request.url))
+  try {
+    await supabase.auth.exchangeCodeForSession(code)
+    return NextResponse.redirect(`${origin}/dashboard`)
+  } catch (error) {
+    console.error('Auth error:', error)
+    return NextResponse.redirect(`${origin}/`)
+  }
 } 
