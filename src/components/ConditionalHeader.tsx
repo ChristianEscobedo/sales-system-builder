@@ -14,12 +14,11 @@ export function ConditionalHeader() {
       {/* Small logo at the top */}
       <div className="w-full flex justify-center py-4">
         <img 
-          src="/src/assets/MicroSaaS-Logo-BUild.png"
-          alt="MicroSaaS Builder Logo"
-          className="h-9 w-auto"
+          src="/MicroSaaS-Logo-Build.png"
+          alt="MicroSaaS Logo" 
+          className="mx-auto mb-8 h-[50px] w-auto"
         />
       </div>
-
       {/* Main content */}
       <div className="flex flex-col items-center py-8 space-y-6">
         <div className="text-center space-y-4">
@@ -27,13 +26,19 @@ export function ConditionalHeader() {
             Custom Sales System Builder
           </span>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 text-transparent bg-clip-text bg-300% animate-gradient">
-              Build A Complete $1k - $8k Low Ticket to High Ticket
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+            Build A Complete 
+            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 text-transparent bg-clip-text">
+              $1k - $8k
+            </span> 
+            Low Ticket to 
+            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 text-transparent bg-clip-text">
+              High Ticket
             </span>
             <br />
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-500 to-fuchsia-400 text-transparent bg-clip-text bg-300% animate-gradient">
-              Sales System in Record Time
+            Sales System in 
+            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 text-transparent bg-clip-text">
+              Record Time
             </span>
           </h1>
         </div>
