@@ -16,7 +16,7 @@ export function ConditionalHeader() {
         <img 
           src="/MicroSaaS-Logo-Build.png"
           alt="MicroSaaS Logo" 
-          className="h-[30px] w-auto object-contain"
+          className="h-[30px] w-[120px] object-contain" 
         />
       </div>
 
