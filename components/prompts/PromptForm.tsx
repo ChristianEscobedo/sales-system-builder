@@ -56,6 +56,8 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
   };
 
   const handlePresetChange = (preset: PromptStylePreset) => {
+    updateField("stylePreset", preset);
+    
     const presetColors = stylePresets[preset].colors;
     updateField("colorTheme", {
       primary: presetColors.primary,
@@ -214,7 +216,8 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
             <Label className="text-white mb-4 block">Style Preset</Label>
             <StyleSelector
               value={(formData.stylePreset as PromptStylePreset) || 'modern'}
-              onChange={(preset) => updateField("stylePreset", preset)}
+              onChange={handlePresetChange}
+              onColorUpdate={(colors) => updateField("colorTheme", colors)}
             />
           </div>
 

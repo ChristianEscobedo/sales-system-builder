@@ -8,11 +8,25 @@ import type { PromptStylePreset } from "@/lib/constants/style-presets";
 interface StyleSelectorProps {
   value: PromptStylePreset;
   onChange: (preset: PromptStylePreset) => void;
+  onColorUpdate?: (colors: any) => void;
 }
 
-export function StyleSelector({ value, onChange }: StyleSelectorProps) {
+export function StyleSelector({ value, onChange, onColorUpdate }: StyleSelectorProps) {
+  const handlePresetChange = (preset: PromptStylePreset) => {
+    onChange(preset);
+    
+    if (onColorUpdate) {
+      const presetColors = stylePresets[preset].colors;
+      onColorUpdate(presetColors);
+    }
+  };
+
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <RadioGroup
+      value={value}
+      onValueChange={handlePresetChange}
+      className="grid grid-cols-2 gap-4"
+    >
       {(Object.keys(stylePresets) as PromptStylePreset[]).map((presetKey) => {
         const preset = stylePresets[presetKey];
         const isSelected = value === presetKey;
@@ -44,6 +58,6 @@ export function StyleSelector({ value, onChange }: StyleSelectorProps) {
           </button>
         );
       })}
-    </div>
+    </RadioGroup>
   );
 }
