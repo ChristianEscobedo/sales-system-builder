@@ -28,16 +28,16 @@ export function ConditionalHeader() {
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
             Build A Complete 
-            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-black text-transparent bg-clip-text">
+            <span className="text-white">
               $1k - $8k
             </span> 
             Low Ticket to 
-            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-black text-transparent bg-clip-text">
+            <span className="text-white">
               High Ticket
             </span>
             <br />
             Sales System in 
-            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-black text-transparent bg-clip-text">
+            <span className="text-white">
               Record Time
             </span>
           </h1>
