@@ -11,12 +11,12 @@ export function ConditionalHeader() {
 
   return (
     <>
-      {/* Full width logo at the top */}
-      <div className="w-full py-4">
+      {/* Logo at the top */}
+      <div className="flex justify-center py-4">
         <img 
           src="/MicroSaaS-Logo-Build.png"
           alt="MicroSaaS Logo" 
-          className="w-full h-[30px] object-contain"
+          className="h-[30px] w-auto object-contain"
         />
       </div>
 
