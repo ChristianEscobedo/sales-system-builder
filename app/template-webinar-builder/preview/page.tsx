@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { WebinarPreview } from "@/components/webinar/WebinarPreview";
 import { defaultWebinarData } from "@/lib/defaults/webinar";
+import type { WebinarData } from '@/types/webinar';
 
 export default function PreviewPage() {
   return (
@@ -15,8 +16,10 @@ export default function PreviewPage() {
 
 function PreviewContent() {
   const searchParams = useSearchParams();
-  const webinarData = searchParams.get("data") 
-    ? JSON.parse(decodeURIComponent(searchParams.get("data")!))
+  const dataParam = searchParams?.get("data");
+  
+  const webinarData: WebinarData = dataParam
+    ? JSON.parse(decodeURIComponent(dataParam))
     : defaultWebinarData;
 
   return (

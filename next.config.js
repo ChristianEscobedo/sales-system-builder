@@ -10,19 +10,9 @@ const nextConfig = {
     unoptimized: true
   },
   experimental: {},
-  poweredByHeader: false,
-  compress: true,
-  async rewrites() {
-    return [
-      {
-        source: '/auth/callback',
-        destination: '/api/auth/callback'
-      }
-    ];
-  },
-  async redirects() {
-    return [];
-  }
+  output: 'export',
+  trailingSlash: true,
+  distDir: '.next',
 }
 
 module.exports = nextConfig
