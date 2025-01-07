@@ -6,20 +6,14 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {
-  try {
-    const requestUrl = new URL(request.url)
-    const code = requestUrl.searchParams.get('code')
-    const origin = requestUrl.origin
+  const cookieStore = cookies()
+  const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
+  const { searchParams } = new URL(request.url)
+  const code = searchParams.get('code')
 
-    if (!code) {
-      return NextResponse.redirect(`${origin}/`)
-    }
-
-    const supabase = createRouteHandlerClient({ cookies })
+  if (code) {
     await supabase.auth.exchangeCodeForSession(code)
-    return NextResponse.redirect(`${origin}/dashboard`)
-  } catch (error) {
-    console.error('Auth callback error:', error)
-    return NextResponse.redirect(`${origin}/`)
   }
+
+  return NextResponse.redirect(new URL('/dashboard', request.url))
 } 

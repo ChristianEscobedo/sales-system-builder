@@ -11,10 +11,8 @@ const nextConfig = {
     ignoreDuringBuilds: true
   },
   experimental: {
-    optimizeCss: false,
-    forceSwcTransforms: true
-  },
-  pageExtensions: ['tsx', 'ts', 'jsx', 'js']
+    appDir: true
+  }
 }
 
 module.exports = nextConfig
