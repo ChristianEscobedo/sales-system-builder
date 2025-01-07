@@ -1,5 +1,7 @@
 "use client";
 
+import Image from 'next/image'
+
 interface HeaderProps {
   title?: string;
   subtitle?: string;
@@ -16,7 +18,12 @@ export function Header({ title, subtitle, logo, navigation }: HeaderProps) {
       {/* Logo/Title Section */}
       <div className="flex items-center gap-4">
         {logo && (
-          <img src={logo} alt="Logo" className="h-8" />
+          <Image 
+            src={logo}
+            alt="Logo"
+            width={500}
+            height={300}
+          />
         )}
         <div>
           {title && (
