@@ -11,14 +11,15 @@ export function ConditionalHeader() {
 
   return (
     <>
-      {/* Small logo at the top */}
-      <div className="w-full flex justify-center py-4">
+      {/* Full width logo at the top */}
+      <div className="w-full py-4">
         <img 
           src="/MicroSaaS-Logo-Build.png"
           alt="MicroSaaS Logo" 
-          className="mx-auto mb-8 h-[50px] w-[200px] object-contain"
+          className="w-full h-[30px] object-contain"
         />
       </div>
+
       {/* Main content */}
       <div className="flex flex-col items-center py-8 space-y-6">
         <div className="text-center space-y-4">
@@ -27,16 +28,16 @@ export function ConditionalHeader() {
           </span>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-            Build A Complete 
+            Build A Complete{' '}
             <span className="text-white">
-              $1k - $8k
-            </span> 
-            Low Ticket to 
+              $1k - $8k{' '}
+            </span>
+            Low Ticket to{' '}
             <span className="text-white">
-              High Ticket
+              High Ticket{' '}
             </span>
             <br />
-            Sales System in 
+            Sales System in{' '}
             <span className="text-white">
               Record Time
             </span>
@@ -45,4 +46,4 @@ export function ConditionalHeader() {
       </div>
     </>
   )
-} 
+}
