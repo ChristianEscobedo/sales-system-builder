@@ -16,7 +16,7 @@ export function ConditionalHeader() {
         <img 
           src="/MicroSaaS-Logo-Build.png"
           alt="MicroSaaS Logo" 
-          className="mx-auto mb-8 h-[50px] w-auto"
+          className="mx-auto mb-8 h-[50px] w-[200px] object-contain"
         />
       </div>
       {/* Main content */}
@@ -28,16 +28,16 @@ export function ConditionalHeader() {
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
             Build A Complete 
-            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-black text-transparent bg-clip-text">
               $1k - $8k
             </span> 
             Low Ticket to 
-            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-black text-transparent bg-clip-text">
               High Ticket
             </span>
             <br />
             Sales System in 
-            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-black text-transparent bg-clip-text">
               Record Time
             </span>
           </h1>
