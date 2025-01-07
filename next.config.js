@@ -10,8 +10,13 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   },
-  output: 'standalone',
-  poweredByHeader: false
+  // Disable optimizations that might cause issues
+  swcMinify: false,
+  optimizeFonts: false,
+  experimental: {
+    optimizeCss: false,
+    serverActions: false
+  }
 }
 
 module.exports = nextConfig
