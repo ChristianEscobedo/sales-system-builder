@@ -68,12 +68,12 @@
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.9",
-    "zod": "^3.23.8",
-    "critters": "^0.0.20"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "22.10.4",
     "@types/react": "18.3.18",
+    "critters": "^0.0.23",
     "typescript": "5.7.2"
   }
 }

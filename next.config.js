@@ -10,19 +10,15 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   },
-  output: 'standalone',
-  optimizeCss: true,
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: '/500',
         destination: '/',
-        permanent: false,
       },
       {
         source: '/404',
         destination: '/',
-        permanent: false,
       },
     ]
   }
