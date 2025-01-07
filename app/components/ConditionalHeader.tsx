@@ -13,20 +13,21 @@ export function ConditionalHeader() {
     <>
       <div className="flex flex-col items-center justify-center min-h-[40vh] bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-8">
         <div className="text-center">
-          <Image
-            src="/MicroSaaS-Logo-BUild.png"
+          <img 
+            src="/MicroSaaS-Logo-Build.png"
             alt="MicroSaaS Logo"
-            width={200}
-            height={200}
-            priority
-            className="mx-auto mb-8"
+            className="mx-auto mb-8 h-[100px] w-auto"
           />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Build Your A Complete Custom $1k 
-            <br />
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-500 to-fuchsia-400 text-transparent bg-clip-text bg-300% animate-gradient">
-              Sales Funnel System in Record Time
+            Build A Complete Custom 
+            <span className="bg-gradient-to-r from-purple-400 to-fuchsia-500 text-transparent bg-clip-text">
+              {' '}$1k - $8k{' '}
             </span>
+            <br />
+            <span className="bg-gradient-to-r from-indigo-400 to-purple-500 text-transparent bg-clip-text">
+              Sales Funnel System
+            </span>
+            {' '}in Record Time
           </h1>
         </div>
       </div>
