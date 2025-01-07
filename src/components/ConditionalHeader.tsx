@@ -11,13 +11,17 @@ export function ConditionalHeader() {
 
   return (
     <>
-      {/* Logo at the top */}
+      {/* Logo container with fixed dimensions */}
       <div className="flex justify-center py-4">
-        <img 
-          src="/MicroSaaS-Logo-Build.png"
-          alt="MicroSaaS Logo" 
-          className="h-[30px] w-[120px] object-contain" 
-        />
+        <div className="w-[120px] h-[30px] relative">
+          <Image 
+            src="/MicroSaaS-Logo-Build.png"
+            alt="MicroSaaS Logo"
+            fill
+            style={{ objectFit: 'contain' }}
+            priority
+          />
+        </div>
       </div>
 
       {/* Main content */}
