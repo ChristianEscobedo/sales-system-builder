@@ -8,7 +8,12 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
     unoptimized: true
-  }
+  },
+  experimental: {
+    optimizeCss: true,
+  },
+  poweredByHeader: false,
+  compress: true,
 }
 
 module.exports = nextConfig

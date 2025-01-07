@@ -18,12 +18,16 @@ export function Header({ title, subtitle, logo, navigation }: HeaderProps) {
       {/* Logo/Title Section */}
       <div className="flex items-center gap-4">
         {logo && (
-          <Image 
-            src={logo}
-            alt="Logo"
-            width={500}
-            height={300}
-          />
+          <div className="relative h-8 w-auto">
+            <Image 
+              src={logo}
+              alt="Logo"
+              width={32}
+              height={32}
+              className="h-8 w-auto object-contain"
+              priority
+            />
+          </div>
         )}
         <div>
           {title && (
