@@ -12,6 +12,18 @@ interface StyleTabProps {
   onChange: (data: WebinarData) => void;
 }
 
+// Add type for colors
+type WebinarColors = {
+  primary: string;
+  secondary: string;
+  background: string;
+  text: string;
+  accent: string;
+};
+
+// Add type for the color value
+type ColorValue = string;
+
 export function StyleTab({ data, onChange }: StyleTabProps) {
   const updateStyle = (field: keyof typeof data.style, value: any) => {
     onChange({
@@ -28,6 +40,27 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
         preset,
         colors: { ...presetColors },
         gradients: [...webinarStylePresets[preset].gradients]
+      }
+    });
+  };
+
+  const handleColorUpdate = (key: keyof WebinarColors, value: string) => {
+    const currentColors = data.style?.colors || {
+      primary: "#6366F1",
+      secondary: "#8B5CF6",
+      background: "#000000",
+      text: "#FFFFFF",
+      accent: "#4F46E5"
+    };
+    
+    onChange({
+      ...data,
+      style: {
+        ...(data.style || {}),
+        colors: {
+          ...currentColors,
+          [key]: value
+        }
       }
     });
   };
@@ -60,7 +93,7 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
                     <div
                       key={key}
                       className="w-6 h-6 rounded-full"
-                      style={{ backgroundColor: color }}
+                      style={{ backgroundColor: color as ColorValue }}
                       title={key}
                     />
                   ))}
@@ -76,57 +109,27 @@ export function StyleTab({ data, onChange }: StyleTabProps) {
         <ColorPicker
           label="Primary Color"
           value={data.style?.colors?.primary || "#6366F1"}
-          onChange={(value) => {
-            const newColors = { ...(data.style?.colors || {}), primary: value };
-            onChange({
-              ...data,
-              style: { ...(data.style || {}), colors: newColors }
-            });
-          }}
+          onChange={(value) => handleColorUpdate("primary", value)}
         />
         <ColorPicker
           label="Secondary Color"
           value={data.style?.colors?.secondary || "#8B5CF6"}
-          onChange={(value) => {
-            const newColors = { ...(data.style?.colors || {}), secondary: value };
-            onChange({
-              ...data,
-              style: { ...(data.style || {}), colors: newColors }
-            });
-          }}
+          onChange={(value) => handleColorUpdate("secondary", value)}
         />
         <ColorPicker
           label="Background Color"
           value={data.style?.colors?.background || "#000000"}
-          onChange={(value) => {
-            const newColors = { ...(data.style?.colors || {}), background: value };
-            onChange({
-              ...data,
-              style: { ...(data.style || {}), colors: newColors }
-            });
-          }}
+          onChange={(value) => handleColorUpdate("background", value)}
         />
         <ColorPicker
           label="Text Color"
           value={data.style?.colors?.text || "#FFFFFF"}
-          onChange={(value) => {
-            const newColors = { ...(data.style?.colors || {}), text: value };
-            onChange({
-              ...data,
-              style: { ...(data.style || {}), colors: newColors }
-            });
-          }}
+          onChange={(value) => handleColorUpdate("text", value)}
         />
         <ColorPicker
           label="Accent Color"
           value={data.style?.colors?.accent || "#4F46E5"}
-          onChange={(value) => {
-            const newColors = { ...(data.style?.colors || {}), accent: value };
-            onChange({
-              ...data,
-              style: { ...(data.style || {}), colors: newColors }
-            });
-          }}
+          onChange={(value) => handleColorUpdate("accent", value)}
         />
       </div>
     </div>

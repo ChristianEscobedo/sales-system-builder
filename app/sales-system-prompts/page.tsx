@@ -14,17 +14,27 @@ export default function PublicPromptsPage() {
     painPoint: "",
     quickWin: "",
     frustrationMethod: "",
-    timeFrame: "",
+    timeFrame: "30 days",
     modules: [],
     bonusName: "",
-    bonusValue: 0,
+    bonusValue: 997,
     targetAudience: "",
     expertName: "",
     expertCredentials: "",
     transformation: "",
     industryNiche: "",
-    productPrice: "",
+    productPrice: "997",
     supportEmail: "",
+    painPoints: [],
+    industryStats: [],
+    storyHook: "",
+    desiredOutcome: "",
+    trustElements: [],
+    socialProof: {
+      downloads: 0,
+      successStories: [],
+      industryRecognition: []
+    },
     colorTheme: {
       primary: "#6366F1",
       secondary: "#8B5CF6",
@@ -33,12 +43,7 @@ export default function PublicPromptsPage() {
       hoverText: "#F3F4F6",
       selectedText: "#4F46E5",
       accent: "#4F46E5",
-      gradients: ["from-purple-600 to-blue-600", "from-purple-500 to-blue-500"]
-    },
-    style: {
-      font: "inter",
-      layout: "modern",
-      spacing: "comfortable"
+      gradients: []
     }
   }));
   const [isGenerating, setIsGenerating] = useState(false);

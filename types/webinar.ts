@@ -4,6 +4,13 @@ export type SlideType =
   | "opening"
   | "promise"
   | "story"
+  | "problem"
+  | "solution"
+  | "benefits"
+  | "case-studies"
+  | "offer"
+  | "bonuses"
+  | "close"
   | "industry-problem"
   | "common-myth"
   | "real-truth"
@@ -144,6 +151,7 @@ export interface WebinarData {
   problem: string;
   solution: string;
   targetAudience: string;
+  industryNiche?: string;
   mainBenefit: string;
   slides: WebinarSlide[];
   offer: Offer;

@@ -26,6 +26,7 @@ export interface PromptData {
   industryNiche: string;
   productPrice: string;
   supportEmail: string;
+  stylePreset?: string;
   colorTheme: {
     primary: string;
     secondary: string;
@@ -36,7 +37,17 @@ export interface PromptData {
     accent: string;
     gradients: string[];
   };
-  style: {
+  painPoints: string[];
+  industryStats: string[];
+  storyHook: string;
+  desiredOutcome: string;
+  trustElements: string[];
+  socialProof: {
+    downloads: number;
+    successStories: string[];
+    industryRecognition: string[];
+  };
+  style?: {
     font: string;
     layout: string;
     spacing: string;

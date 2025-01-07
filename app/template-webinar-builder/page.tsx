@@ -10,16 +10,32 @@ export default function WebinarBuilderPage() {
   const [webinarData, setWebinarData] = useState<WebinarData>({
     title: "",
     subtitle: "",
-    description: "",
-    duration: "60 minutes",
+    type: "webinar",
+    presenter: {
+      name: "",
+      title: "",
+      credentials: "",
+      bio: ""
+    },
     targetAudience: "",
+    problem: "",
+    solution: "",
     mainBenefit: "",
     slides: [],
+    offer: {
+      name: "",
+      price: "",
+      value: "",
+      guarantee: "",
+      bonuses: []
+    },
     style: {
-      theme: "dark",
+      preset: "dark",
       colors: {
         primary: "#6366F1",
         secondary: "#8B5CF6",
+        background: "#000000",
+        text: "#FFFFFF",
         accent: "#4F46E5"
       }
     }

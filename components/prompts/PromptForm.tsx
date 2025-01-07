@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 interface PromptFormProps {
   data: PromptData;
   onSubmit: (data: PromptData) => void;
+  onChange?: (data: PromptData) => void;
   isGenerating?: boolean;
   publicVersion?: boolean;
   onSave?: () => void;
@@ -24,6 +25,7 @@ interface PromptFormProps {
 export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false, onSave }: PromptFormProps) {
   // Ensure data has default values
   const formData = {
+    ...data,
     resourceType: data?.resourceType || "",
     resourceName: data?.resourceName || "",
     painPoint: data?.painPoint || "",
@@ -40,7 +42,6 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
     industryNiche: data?.industryNiche || "",
     productPrice: data?.productPrice || "",
     supportEmail: data?.supportEmail || "",
-    ...data
   };
 
   const updateField = (field: keyof PromptData, value: any) => {
@@ -48,6 +49,8 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
       ...formData,
       [field]: field === "colorTheme" && typeof value === "object"
         ? { ...formData.colorTheme, ...value }
+        : field === "stylePreset" && typeof value === "string"
+        ? value
         : value
     });
   };
@@ -210,7 +213,7 @@ export function PromptForm({ data, onSubmit, isGenerating, publicVersion = false
           <div>
             <Label className="text-white mb-4 block">Style Preset</Label>
             <StyleSelector
-              value={formData.stylePreset}
+              value={(formData.stylePreset as PromptStylePreset) || 'modern'}
               onChange={(preset) => updateField("stylePreset", preset)}
             />
           </div>

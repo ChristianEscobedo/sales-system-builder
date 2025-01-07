@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { generatePrompt } from '@/lib/prompts/generate-prompt';
+import { generatePromptContent as generatePrompt } from '@/lib/prompts/generate-prompt';
 import type { PromptData } from '@/types/prompt';
 
 export async function POST(request: Request) {

@@ -1,4 +1,26 @@
-import type { PromptData, PromptParams } from "@/types/prompt";
+import type { PromptData } from "@/types/prompt";
+
+// Extend from base type to ensure compatibility
+export interface PromptParams extends Pick<PromptData, 
+  | 'targetAudience'
+  | 'transformation'
+  | 'expertName'
+  | 'expertCredentials'
+  | 'supportEmail'
+  | 'timeFrame'
+  | 'bonusName'
+  | 'bonusValue'
+  | 'industryNiche'
+  | 'productPrice'
+> {
+  courseName: string;
+  problem: string;
+  solution: string;
+  currentMethod: string;
+  modules?: string[];
+  audience?: string;
+  niche?: string;
+}
 
 export const defaultPromptParams: PromptParams = {
   courseName: "Your Course Name",
@@ -10,6 +32,11 @@ export const defaultPromptParams: PromptParams = {
   expertName: "Your Name",
   expertCredentials: "Your credentials and experience",
   supportEmail: "support@example.com",
+  timeFrame: "30 days",
+  bonusName: "Quick Start Guide",
+  bonusValue: 997,
+  industryNiche: "Digital Marketing",
+  productPrice: "997",
   modules: [
     "Module 1: Getting Started",
     "Module 2: Core Strategies",
@@ -31,6 +58,21 @@ export function createDefaultPromptData(params: Partial<PromptParams> = {}): Pro
     expertName: mergedParams.expertName,
     expertCredentials: mergedParams.expertCredentials,
     supportEmail: mergedParams.supportEmail,
+    timeFrame: mergedParams.timeFrame || "30 days",
+    bonusName: mergedParams.bonusName || "Quick Start Guide",
+    bonusValue: mergedParams.bonusValue || 997,
+    industryNiche: mergedParams.industryNiche || "Digital Marketing",
+    productPrice: mergedParams.productPrice || "997",
+    painPoints: [],
+    industryStats: [],
+    storyHook: "",
+    desiredOutcome: "",
+    trustElements: [],
+    socialProof: {
+      downloads: 0,
+      successStories: [],
+      industryRecognition: []
+    },
     modules: mergedParams.modules || [],
     colorTheme: {
       primary: "#6366F1",

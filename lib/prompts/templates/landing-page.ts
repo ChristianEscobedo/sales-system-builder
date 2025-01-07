@@ -1,4 +1,4 @@
-import type { PromptTemplate } from "@/types/prompt";
+import type { PromptData } from "@/types/prompt";
 
 export const LANDING_PAGE_TEMPLATE = `This is Part 1 of a Complete Sales System Including Landing Page, Bridge Page, and Thank You Page.
 
