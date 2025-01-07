@@ -9,25 +9,20 @@ const nextConfig = {
     domains: ['localhost'],
     unoptimized: true
   },
-  experimental: {
-    // optimizeCss: false,
-  },
+  experimental: {},
   poweredByHeader: false,
   compress: true,
-  output: 'standalone',
-  async headers() {
+  async rewrites() {
     return [
       {
         source: '/auth/callback',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-store, max-age=0',
-          },
-        ],
-      },
+        destination: '/api/auth/callback'
+      }
     ];
   },
+  async redirects() {
+    return [];
+  }
 }
 
 module.exports = nextConfig
